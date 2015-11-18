@@ -2,9 +2,9 @@ package fr.istic.videogen.playlist
 
 import java.util.List
 
-class PlayList {
+abstract class PlayList {
 	
-	private List<String> urlVideos ;
+	protected List<String> urlVideos ;
 	
 	 new() {
 		urlVideos = newArrayList();
@@ -13,6 +13,8 @@ class PlayList {
 	def void add(String video){
 		urlVideos.add(video);
 	}
+	
+	abstract def void generateFile()	
 	
 	override String toString(){
 		var msg="";
