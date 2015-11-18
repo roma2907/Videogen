@@ -11,6 +11,6 @@ VideoGen{
 	 
 	 alternatives v4{
 	 	videoseq v6 "folder/test.mp4" description : "test1" probability: 40 duration:120
-	 	videoseq v7 "folder/test.mp4" description : "test1" probability: 60 duration:120
+	 	videoseq v7 "folder/test.mp5" description : "test2" probability: 60 duration:120
 	 }
 }

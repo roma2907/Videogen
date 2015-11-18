@@ -1,8 +1,11 @@
 package fr.istic.videogen;
 
 import fr.istic.videogen.playlist.PlayList;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
@@ -45,6 +48,8 @@ public class ReadVideogenFile {
             }
           } else {
             if ((video instanceof AlternativeRule)) {
+              String _addAlternativeVideo = this.addAlternativeVideo(((AlternativeRule)video));
+              playList.add(_addAlternativeVideo);
             }
           }
         }
@@ -72,14 +77,50 @@ public class ReadVideogenFile {
     return _xifexpression;
   }
   
-  private String canAddAlternatieVideo(final AlternativeRule video) {
+  private String addAlternativeVideo(final AlternativeRule video) {
     String _xblockexpression = null;
     {
-      HashMap<Object, Object> mapProbability = CollectionLiterals.<Object, Object>newHashMap();
+      final HashMap<VideoSeq, Integer> mapProbability = CollectionLiterals.<VideoSeq, Integer>newHashMap();
+      int probaRestante = 100;
+      final ArrayList<VideoSeq> listAlternativeWithNoProba = CollectionLiterals.<VideoSeq>newArrayList();
       EList<VideoSeq> _alternatves = video.getAlternatves();
-      final Consumer<VideoSeq> _function = (VideoSeq a) -> {
-      };
-      _alternatves.forEach(_function);
+      for (final VideoSeq a : _alternatves) {
+        {
+          int _proprobabilitePercent = a.getProprobabilitePercent();
+          boolean _notEquals = (_proprobabilitePercent != 0);
+          if (_notEquals) {
+            int _probaRestante = probaRestante;
+            int _proprobabilitePercent_1 = a.getProprobabilitePercent();
+            probaRestante = (_probaRestante - _proprobabilitePercent_1);
+          } else {
+            listAlternativeWithNoProba.add(a);
+          }
+          int _proprobabilitePercent_2 = a.getProprobabilitePercent();
+          mapProbability.put(a, Integer.valueOf(_proprobabilitePercent_2));
+        }
+      }
+      final int sizeNoProba = listAlternativeWithNoProba.size();
+      if ((sizeNoProba != 0)) {
+        final int probaForAl = (probaRestante / sizeNoProba);
+        final Consumer<VideoSeq> _function = (VideoSeq a_1) -> {
+          mapProbability.put(a_1, Integer.valueOf(probaForAl));
+        };
+        listAlternativeWithNoProba.forEach(_function);
+      }
+      final int aleatoire = this.random.nextInt(100);
+      int parcours = 0;
+      Set<Map.Entry<VideoSeq, Integer>> _entrySet = mapProbability.entrySet();
+      for (final Map.Entry<VideoSeq, Integer> entry : _entrySet) {
+        {
+          int _parcours = parcours;
+          Integer _value = entry.getValue();
+          parcours = (_parcours + (_value).intValue());
+          if ((parcours > aleatoire)) {
+            VideoSeq _key = entry.getKey();
+            return _key.getUrl();
+          }
+        }
+      }
       _xblockexpression = "";
     }
     return _xblockexpression;
