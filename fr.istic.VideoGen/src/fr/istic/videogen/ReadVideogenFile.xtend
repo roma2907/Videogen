@@ -1,6 +1,5 @@
 package fr.istic.videogen
 
-import fr.istic.videogen.playlist.PlayList
 import org.xtext.example.mydsl.videoGen.OptionnalRule
 import org.xtext.example.mydsl.videoGen.VideoGen
 import org.xtext.example.mydsl.videoGen.MandatoryRule
@@ -8,6 +7,7 @@ import java.util.Random
 import org.xtext.example.mydsl.videoGen.AlternativeRule
 import org.xtext.example.mydsl.videoGen.VideoSeq
 import java.util.Map.Entry
+import fr.istic.videogen.playlist.PlayListFFMPEG
 
 class ReadVideogenFile {
 	
@@ -19,7 +19,7 @@ class ReadVideogenFile {
 	}
 	
 	def apply(){
-		val playList = new PlayList
+		val playList = new PlayListFFMPEG
 		videogen.videos.forEach[video |
 			if(video instanceof MandatoryRule){
 				playList.add(video.seq.url);

@@ -5,8 +5,8 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
-public class PlayList {
-  private List<String> urlVideos;
+public abstract class PlayList {
+  protected List<String> urlVideos;
   
   public PlayList() {
     ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList();
@@ -16,6 +16,8 @@ public class PlayList {
   public void add(final String video) {
     this.urlVideos.add(video);
   }
+  
+  public abstract void generateFile();
   
   @Override
   public String toString() {

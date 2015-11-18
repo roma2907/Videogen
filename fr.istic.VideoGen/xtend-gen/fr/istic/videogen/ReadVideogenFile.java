@@ -1,6 +1,6 @@
 package fr.istic.videogen;
 
-import fr.istic.videogen.playlist.PlayList;
+import fr.istic.videogen.playlist.PlayListFFMPEG;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,10 +28,10 @@ public class ReadVideogenFile {
     this.videogen = pVideogen;
   }
   
-  public PlayList apply() {
-    PlayList _xblockexpression = null;
+  public PlayListFFMPEG apply() {
+    PlayListFFMPEG _xblockexpression = null;
     {
-      final PlayList playList = new PlayList();
+      final PlayListFFMPEG playList = new PlayListFFMPEG();
       EList<Video> _videos = this.videogen.getVideos();
       final Consumer<Video> _function = (Video video) -> {
         if ((video instanceof MandatoryRule)) {
@@ -55,7 +55,7 @@ public class ReadVideogenFile {
         }
       };
       _videos.forEach(_function);
-      InputOutput.<PlayList>println(playList);
+      InputOutput.<PlayListFFMPEG>println(playList);
       _xblockexpression = playList;
     }
     return _xblockexpression;

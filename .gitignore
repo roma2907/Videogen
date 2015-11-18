@@ -1,0 +1,9 @@
+bin
+#.jar
+*.war
+*.ear
+*buildroot
+*.DS_Store
+*.xtendbin
+plugin.xml_gen
+.metadata
