@@ -7,3 +7,5 @@ bin
 *.xtendbin
 plugin.xml_gen
 .metadata
+*.class
+*._trace
