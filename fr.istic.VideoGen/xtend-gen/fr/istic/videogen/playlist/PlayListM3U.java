@@ -8,16 +8,16 @@ import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
-public class PlayListFFMPEG extends PlayList {
+public class PlayListM3U extends PlayList {
   @Override
   public void generateFile() {
     try {
-      final File f = new File("file.ffmpeg");
+      final File f = new File("file.m3u");
       final FileWriter fw = new FileWriter(f);
       try {
         final Consumer<String> _function = (String v) -> {
           try {
-            fw.write(((("file:" + "\'") + v) + "\'"));
+            fw.write(v);
             fw.write("\r\n");
           } catch (Throwable _e) {
             throw Exceptions.sneakyThrow(_e);

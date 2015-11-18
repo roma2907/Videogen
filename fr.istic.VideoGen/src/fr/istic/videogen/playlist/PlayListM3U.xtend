@@ -1,17 +1,17 @@
 package fr.istic.videogen.playlist
 
+import java.io.IOException
 import java.io.File
 import java.io.FileWriter
-import java.io.IOException
 
-class PlayListFFMPEG extends PlayList {
+class PlayListM3U extends PlayList {
 	
 	
 	
  
 	override generateFile() {
 		
-		val f = new File ("file.ffmpeg");
+		val f = new File ("file.m3u");
 	
 	
 	val fw = new FileWriter (f);
@@ -20,7 +20,7 @@ class PlayListFFMPEG extends PlayList {
 		{
 			urlVideos.forEach[v|
 				
-				fw.write ("file:"+"'"+v+"'");
+				fw.write (v);
 				 fw.write ("\r\n");
 				
 			]
@@ -33,8 +33,3 @@ class PlayListFFMPEG extends PlayList {
 		 }
 		
 	}
-	
-	
-	
-	
-	
