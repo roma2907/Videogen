@@ -1,0 +1,25 @@
+grammar org.xtext.example.mydsl.VideoGen with org.eclipse.xtext.common.Terminals
+
+generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
+
+VideoGen:
+	'VideoGen' '{' (videos+=Video)* '}';
+		
+Video : MandatoryRule| OptionnalRule | AlternativeRule ;
+
+MandatoryRule : 'mandatory' seq=VideoSeqMandatory ;
+
+OptionnalRule : 'optional' seq=VideoSeq ;
+
+AlternativeRule : 'alternatives' id=ID '{' alternatves+=VideoSeq+ '}';
+
+VideoSeq: 'videoseq' (id=ID)?  url=STRING 
+	('description' ':' description=STRING)? 
+	('probability' ':' proprobabilitePercent=INT)? 
+	('duration' ':' dureeSeconde=INT)?
+;
+
+VideoSeqMandatory: 'videoseq' (id=ID)?  url=STRING 
+	('description' ':' description=STRING)? 
+	('duration' ':' dureeSeconde=INT)?
+;

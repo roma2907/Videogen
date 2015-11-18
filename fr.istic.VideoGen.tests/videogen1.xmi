@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGen xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videos xsi:type="videoGen:MandatoryRule">
+    <seq id="v1" url="bip" description="description1"/>
+  </videos>
+  <videos xsi:type="videoGen:OptionnalRule">
+    <seq id="v2" url="url" proprobabilitePercent="100" dureeSeconde="150"/>
+  </videos>
+  <videos xsi:type="videoGen:OptionnalRule">
+    <seq id="v9" url="url" proprobabilitePercent="50" dureeSeconde="150"/>
+  </videos>
+  <videos xsi:type="videoGen:OptionnalRule">
+    <seq id="v8" url="url" proprobabilitePercent="10" dureeSeconde="150"/>
+  </videos>
+  <videos xsi:type="videoGen:AlternativeRule" id="v3">
+    <alternatves url="salut"/>
+    <alternatves id="va" url="url"/>
+  </videos>
+  <videos xsi:type="videoGen:AlternativeRule" id="v4">
+    <alternatves id="v6" url="folder/test.mp4" description="test1" proprobabilitePercent="40" dureeSeconde="120"/>
+    <alternatves id="v7" url="folder/test.mp4" description="test1" proprobabilitePercent="60" dureeSeconde="120"/>
+  </videos>
+</videoGen:VideoGen>
