@@ -20,7 +20,7 @@ class PlayListM3U extends PlayList {
 		{
 			urlVideos.forEach[v|
 				
-				fw.write (v);
+				 fw.write (v);
 				 fw.write ("\r\n");
 				
 			]
