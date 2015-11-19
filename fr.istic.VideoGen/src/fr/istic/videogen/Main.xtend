@@ -8,6 +8,7 @@ import org.xtext.example.mydsl.videoGen.MandatoryRule
 
 import org.xtext.example.mydsl.videoGen.OptionnalRule
 import java.util.Random
+import fr.istic.videogen.playlistFormat.PlayListFFMPEG
 
 class Main {
 	
@@ -18,7 +19,8 @@ class Main {
 		}
 		var videogen = loadVideoGen(URI.createURI(args.get(0)));
 		var readFile = new ReadVideogenFile(videogen);
-		readFile.apply();
+		val ffmpeg = new PlayListFFMPEG(readFile.apply());
+		ffmpeg.generateFile
 	}
 	
 	/**

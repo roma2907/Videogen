@@ -1,11 +1,6 @@
 /**
  */
-package PlayList.impl;
-
-import PlayList.PlayList;
-import PlayList.PlayListFactory;
-import PlayList.PlayListPackage;
-import PlayList.Video;
+package playlist.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -13,6 +8,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import playlist.PlayList;
+import playlist.PlayListFactory;
+import playlist.PlayListPackage;
+import playlist.Video;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class PlayListPackageImpl extends EPackageImpl implements PlayListPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see PlayList.PlayListPackage#eNS_URI
+	 * @see playlist.PlayListPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -110,7 +110,7 @@ public class PlayListPackageImpl extends EPackageImpl implements PlayListPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlayList_Video() {
+	public EReference getPlayList_Videos() {
 		return (EReference)playListEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -179,7 +179,7 @@ public class PlayListPackageImpl extends EPackageImpl implements PlayListPackage
 
 		// Create classes and their features
 		playListEClass = createEClass(PLAY_LIST);
-		createEReference(playListEClass, PLAY_LIST__VIDEO);
+		createEReference(playListEClass, PLAY_LIST__VIDEOS);
 
 		videoEClass = createEClass(VIDEO);
 		createEAttribute(videoEClass, VIDEO__URL);
@@ -218,7 +218,7 @@ public class PlayListPackageImpl extends EPackageImpl implements PlayListPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(playListEClass, PlayList.class, "PlayList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPlayList_Video(), this.getVideo(), null, "video", null, 0, -1, PlayList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlayList_Videos(), this.getVideo(), null, "videos", null, 0, -1, PlayList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(videoEClass, Video.class, "Video", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVideo_Url(), ecorePackage.getEString(), "url", null, 0, 1, Video.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

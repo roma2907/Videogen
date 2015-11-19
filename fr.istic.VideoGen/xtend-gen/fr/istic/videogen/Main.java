@@ -1,6 +1,7 @@
 package fr.istic.videogen;
 
 import fr.istic.videogen.ReadVideogenFile;
+import fr.istic.videogen.playlistFormat.PlayListFFMPEG;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -8,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGen;
+import playlist.PlayList;
 
 @SuppressWarnings("all")
 public class Main {
@@ -21,7 +23,9 @@ public class Main {
     URI _createURI = URI.createURI(_get);
     VideoGen videogen = Main.loadVideoGen(_createURI);
     ReadVideogenFile readFile = new ReadVideogenFile(videogen);
-    readFile.apply();
+    PlayList _apply = readFile.apply();
+    final PlayListFFMPEG ffmpeg = new PlayListFFMPEG(_apply);
+    ffmpeg.generateFile();
   }
   
   /**

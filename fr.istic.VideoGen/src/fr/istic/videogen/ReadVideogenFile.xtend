@@ -7,8 +7,9 @@ import java.util.Random
 import org.xtext.example.mydsl.videoGen.AlternativeRule
 import org.xtext.example.mydsl.videoGen.VideoSeq
 import java.util.Map.Entry
-import fr.istic.videogen.playlist.PlayListFFMPEG
-import PlayList.PlayList
+import org.xtext.example.mydsl.videoGen.VideoSeqMandatory
+import playlist.Video
+import playlist.PlayListFactory
 
 class ReadVideogenFile {
 	
@@ -21,21 +22,24 @@ class ReadVideogenFile {
 	
 	def apply(){
 		
-		new PlayList; 
+		val factory = PlayListFactory.eINSTANCE;
 		
-		val playList = new PlayListFFMPEG
+		val playList = factory.createPlayList;
+		
 		videogen.videos.forEach[video |
 			if(video instanceof MandatoryRule){
-				playList.add(video.seq.url);
+				playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
 			}else if(video instanceof OptionnalRule){
 				if(canAddOptionnalVideo(video)){
-					playList.add(video.seq.url);
+					playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
 				}
 			}else if(video instanceof AlternativeRule){
-				playList.add(addAlternativeVideo(video));
+				playList.videos.add(createVideoSeqToPlayList(addAlternativeVideo(video),factory))
 			}
 		]
-		println(playList);
+		playList.videos.forEach[
+			f| println(f.url)
+		]
 		playList
 	}
 	
@@ -49,7 +53,7 @@ class ReadVideogenFile {
 		}
 	}
 	
-	private def String addAlternativeVideo(AlternativeRule video){
+	private def VideoSeq addAlternativeVideo(AlternativeRule video){
 		val mapProbability = newHashMap();
 		var probaRestante = 100;
 		val listAlternativeWithNoProba = newArrayList(); 
@@ -74,9 +78,27 @@ class ReadVideogenFile {
 		for(Entry<VideoSeq,Integer> entry : mapProbability.entrySet){
 			parcours += entry.value;
 			if(parcours>aleatoire){
-				return entry.key.url
+				return entry.key
 			}
 		}
-		""
+		null
+	}
+	
+	private def Video createVideoSeqToPlayList(VideoSeq videoSeq,PlayListFactory factory){
+			val video = factory.createVideo
+			video.description = videoSeq.description
+			video.url = videoSeq.url
+			video.duration = videoSeq.dureeSeconde
+			
+			return video
+			
+	}
+	
+	private def Video createVideoSeqToPlayList(VideoSeqMandatory videoSeq,PlayListFactory factory){
+			val video = factory.createVideo
+			video.description = videoSeq.description
+			video.url = videoSeq.url
+			video.duration = videoSeq.dureeSeconde
+			video
 	}
 }

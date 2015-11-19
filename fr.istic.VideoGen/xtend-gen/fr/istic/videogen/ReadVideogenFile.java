@@ -1,6 +1,5 @@
 package fr.istic.videogen;
 
-import fr.istic.videogen.playlist.PlayListFFMPEG;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +8,16 @@ import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.videoGen.AlternativeRule;
+import org.xtext.example.mydsl.videoGen.MandatoryRule;
 import org.xtext.example.mydsl.videoGen.OptionnalRule;
+import org.xtext.example.mydsl.videoGen.Video;
 import org.xtext.example.mydsl.videoGen.VideoGen;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
+import playlist.PlayList;
+import playlist.PlayListFactory;
 
 @SuppressWarnings("all")
 public class ReadVideogenFile {
@@ -24,12 +29,47 @@ public class ReadVideogenFile {
     this.videogen = pVideogen;
   }
   
-  public PlayListFFMPEG apply() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method add is undefined for the type ReadVideogenFile"
-      + "\nThe method add is undefined for the type ReadVideogenFile"
-      + "\nThe method add is undefined for the type ReadVideogenFile"
-      + "\nCannot instantiate the interface type PlayList");
+  public PlayList apply() {
+    PlayList _xblockexpression = null;
+    {
+      final PlayListFactory factory = PlayListFactory.eINSTANCE;
+      final PlayList playList = factory.createPlayList();
+      EList<Video> _videos = this.videogen.getVideos();
+      final Consumer<Video> _function = (Video video) -> {
+        if ((video instanceof MandatoryRule)) {
+          EList<playlist.Video> _videos_1 = playList.getVideos();
+          VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
+          playlist.Video _createVideoSeqToPlayList = this.createVideoSeqToPlayList(_seq, factory);
+          _videos_1.add(_createVideoSeqToPlayList);
+        } else {
+          if ((video instanceof OptionnalRule)) {
+            boolean _canAddOptionnalVideo = this.canAddOptionnalVideo(((OptionnalRule)video));
+            if (_canAddOptionnalVideo) {
+              EList<playlist.Video> _videos_2 = playList.getVideos();
+              VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
+              playlist.Video _createVideoSeqToPlayList_1 = this.createVideoSeqToPlayList(_seq_1, factory);
+              _videos_2.add(_createVideoSeqToPlayList_1);
+            }
+          } else {
+            if ((video instanceof AlternativeRule)) {
+              EList<playlist.Video> _videos_3 = playList.getVideos();
+              VideoSeq _addAlternativeVideo = this.addAlternativeVideo(((AlternativeRule)video));
+              playlist.Video _createVideoSeqToPlayList_2 = this.createVideoSeqToPlayList(_addAlternativeVideo, factory);
+              _videos_3.add(_createVideoSeqToPlayList_2);
+            }
+          }
+        }
+      };
+      _videos.forEach(_function);
+      EList<playlist.Video> _videos_1 = playList.getVideos();
+      final Consumer<playlist.Video> _function_1 = (playlist.Video f) -> {
+        String _url = f.getUrl();
+        InputOutput.<String>println(_url);
+      };
+      _videos_1.forEach(_function_1);
+      _xblockexpression = playList;
+    }
+    return _xblockexpression;
   }
   
   private boolean canAddOptionnalVideo(final OptionnalRule video) {
@@ -48,8 +88,8 @@ public class ReadVideogenFile {
     return _xifexpression;
   }
   
-  private String addAlternativeVideo(final AlternativeRule video) {
-    String _xblockexpression = null;
+  private VideoSeq addAlternativeVideo(final AlternativeRule video) {
+    Object _xblockexpression = null;
     {
       final HashMap<VideoSeq, Integer> mapProbability = CollectionLiterals.<VideoSeq, Integer>newHashMap();
       int probaRestante = 100;
@@ -87,12 +127,37 @@ public class ReadVideogenFile {
           Integer _value = entry.getValue();
           parcours = (_parcours + (_value).intValue());
           if ((parcours > aleatoire)) {
-            VideoSeq _key = entry.getKey();
-            return _key.getUrl();
+            return entry.getKey();
           }
         }
       }
-      _xblockexpression = "";
+      _xblockexpression = null;
+    }
+    return ((VideoSeq)_xblockexpression);
+  }
+  
+  private playlist.Video createVideoSeqToPlayList(final VideoSeq videoSeq, final PlayListFactory factory) {
+    final playlist.Video video = factory.createVideo();
+    String _description = videoSeq.getDescription();
+    video.setDescription(_description);
+    String _url = videoSeq.getUrl();
+    video.setUrl(_url);
+    int _dureeSeconde = videoSeq.getDureeSeconde();
+    video.setDuration(_dureeSeconde);
+    return video;
+  }
+  
+  private playlist.Video createVideoSeqToPlayList(final VideoSeqMandatory videoSeq, final PlayListFactory factory) {
+    playlist.Video _xblockexpression = null;
+    {
+      final playlist.Video video = factory.createVideo();
+      String _description = videoSeq.getDescription();
+      video.setDescription(_description);
+      String _url = videoSeq.getUrl();
+      video.setUrl(_url);
+      int _dureeSeconde = videoSeq.getDureeSeconde();
+      video.setDuration(_dureeSeconde);
+      _xblockexpression = video;
     }
     return _xblockexpression;
   }

@@ -1,6 +1,6 @@
 /**
  */
-package PlayList;
+package playlist;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link PlayList.Video#getUrl <em>Url</em>}</li>
- *   <li>{@link PlayList.Video#getDescription <em>Description</em>}</li>
- *   <li>{@link PlayList.Video#getDuration <em>Duration</em>}</li>
+ *   <li>{@link playlist.Video#getUrl <em>Url</em>}</li>
+ *   <li>{@link playlist.Video#getDescription <em>Description</em>}</li>
+ *   <li>{@link playlist.Video#getDuration <em>Duration</em>}</li>
  * </ul>
  *
- * @see PlayList.PlayListPackage#getVideo()
+ * @see playlist.PlayListPackage#getVideo()
  * @model
  * @generated
  */
@@ -33,14 +33,14 @@ public interface Video extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Url</em>' attribute.
 	 * @see #setUrl(String)
-	 * @see PlayList.PlayListPackage#getVideo_Url()
+	 * @see playlist.PlayListPackage#getVideo_Url()
 	 * @model
 	 * @generated
 	 */
 	String getUrl();
 
 	/**
-	 * Sets the value of the '{@link PlayList.Video#getUrl <em>Url</em>}' attribute.
+	 * Sets the value of the '{@link playlist.Video#getUrl <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Url</em>' attribute.
@@ -59,14 +59,14 @@ public interface Video extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see PlayList.PlayListPackage#getVideo_Description()
+	 * @see playlist.PlayListPackage#getVideo_Description()
 	 * @model
 	 * @generated
 	 */
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link PlayList.Video#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link playlist.Video#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -86,14 +86,14 @@ public interface Video extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Duration</em>' attribute.
 	 * @see #setDuration(int)
-	 * @see PlayList.PlayListPackage#getVideo_Duration()
+	 * @see playlist.PlayListPackage#getVideo_Duration()
 	 * @model default="0"
 	 * @generated
 	 */
 	int getDuration();
 
 	/**
-	 * Sets the value of the '{@link PlayList.Video#getDuration <em>Duration</em>}' attribute.
+	 * Sets the value of the '{@link playlist.Video#getDuration <em>Duration</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Duration</em>' attribute.

@@ -10,7 +10,7 @@
       <!-- @generated PlayList -->
       <package
             uri="http://www.example.org/PlayList"
-            class="PlayList.PlayListPackage"
+            class="playlist.PlayListPackage"
             genModel="model/PlayList.genmodel"/>
    </extension>
 

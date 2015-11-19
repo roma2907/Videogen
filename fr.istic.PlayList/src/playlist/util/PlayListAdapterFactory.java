@@ -1,8 +1,6 @@
 /**
  */
-package PlayList.util;
-
-import PlayList.*;
+package playlist.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -11,12 +9,14 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import playlist.*;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see PlayList.PlayListPackage
+ * @see playlist.PlayListPackage
  * @generated
  */
 public class PlayListAdapterFactory extends AdapterFactoryImpl {
@@ -96,13 +96,13 @@ public class PlayListAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link PlayList.PlayList <em>Play List</em>}'.
+	 * Creates a new adapter for an object of class '{@link playlist.PlayList <em>Play List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see PlayList.PlayList
+	 * @see playlist.PlayList
 	 * @generated
 	 */
 	public Adapter createPlayListAdapter() {
@@ -110,13 +110,13 @@ public class PlayListAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link PlayList.Video <em>Video</em>}'.
+	 * Creates a new adapter for an object of class '{@link playlist.Video <em>Video</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see PlayList.Video
+	 * @see playlist.Video
 	 * @generated
 	 */
 	public Adapter createVideoAdapter() {

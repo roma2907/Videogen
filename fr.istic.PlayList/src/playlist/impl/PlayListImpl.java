@@ -1,10 +1,6 @@
 /**
  */
-package PlayList.impl;
-
-import PlayList.PlayList;
-import PlayList.PlayListPackage;
-import PlayList.Video;
+package playlist.impl;
 
 import java.util.Collection;
 
@@ -16,6 +12,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import playlist.PlayList;
+import playlist.PlayListPackage;
+import playlist.Video;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Play List</b></em>'.
@@ -24,21 +24,21 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link PlayList.impl.PlayListImpl#getVideo <em>Video</em>}</li>
+ *   <li>{@link playlist.impl.PlayListImpl#getVideos <em>Videos</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayList {
 	/**
-	 * The cached value of the '{@link #getVideo() <em>Video</em>}' reference list.
+	 * The cached value of the '{@link #getVideos() <em>Videos</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVideo()
+	 * @see #getVideos()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Video> video;
+	protected EList<Video> videos;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,11 +64,11 @@ public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Video> getVideo() {
-		if (video == null) {
-			video = new EObjectResolvingEList<Video>(Video.class, this, PlayListPackage.PLAY_LIST__VIDEO);
+	public EList<Video> getVideos() {
+		if (videos == null) {
+			videos = new EObjectResolvingEList<Video>(Video.class, this, PlayListPackage.PLAY_LIST__VIDEOS);
 		}
-		return video;
+		return videos;
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayLi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PlayListPackage.PLAY_LIST__VIDEO:
-				return getVideo();
+			case PlayListPackage.PLAY_LIST__VIDEOS:
+				return getVideos();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -94,9 +94,9 @@ public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayLi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PlayListPackage.PLAY_LIST__VIDEO:
-				getVideo().clear();
-				getVideo().addAll((Collection<? extends Video>)newValue);
+			case PlayListPackage.PLAY_LIST__VIDEOS:
+				getVideos().clear();
+				getVideos().addAll((Collection<? extends Video>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -110,8 +110,8 @@ public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayLi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PlayListPackage.PLAY_LIST__VIDEO:
-				getVideo().clear();
+			case PlayListPackage.PLAY_LIST__VIDEOS:
+				getVideos().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -125,8 +125,8 @@ public class PlayListImpl extends MinimalEObjectImpl.Container implements PlayLi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PlayListPackage.PLAY_LIST__VIDEO:
-				return video != null && !video.isEmpty();
+			case PlayListPackage.PLAY_LIST__VIDEOS:
+				return videos != null && !videos.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

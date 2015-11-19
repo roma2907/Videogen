@@ -1,13 +1,13 @@
 /**
  */
-package PlayList.util;
-
-import PlayList.*;
+package playlist.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import playlist.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see PlayList.PlayListPackage
+ * @see playlist.PlayListPackage
  * @generated
  */
 public class PlayListSwitch<T> extends Switch<T> {

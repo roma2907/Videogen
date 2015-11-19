@@ -1,9 +1,6 @@
 /**
  */
-package PlayList.impl;
-
-import PlayList.PlayListPackage;
-import PlayList.Video;
+package playlist.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -11,6 +8,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import playlist.PlayListPackage;
+import playlist.Video;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link PlayList.impl.VideoImpl#getUrl <em>Url</em>}</li>
- *   <li>{@link PlayList.impl.VideoImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link PlayList.impl.VideoImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link playlist.impl.VideoImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link playlist.impl.VideoImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link playlist.impl.VideoImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @generated

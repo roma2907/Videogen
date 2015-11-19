@@ -1,6 +1,6 @@
 /**
  */
-package PlayList;
+package playlist;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see PlayList.PlayListFactory
+ * @see playlist.PlayListFactory
  * @model kind="package"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface PlayListPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "PlayList";
+	String eNAME = "playlist";
 
 	/**
 	 * The package namespace URI.
@@ -46,7 +46,7 @@ public interface PlayListPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "PlayList";
+	String eNS_PREFIX = "playlist";
 
 	/**
 	 * The singleton instance of the package.
@@ -54,26 +54,26 @@ public interface PlayListPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PlayListPackage eINSTANCE = PlayList.impl.PlayListPackageImpl.init();
+	PlayListPackage eINSTANCE = playlist.impl.PlayListPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link PlayList.impl.PlayListImpl <em>Play List</em>}' class.
+	 * The meta object id for the '{@link playlist.impl.PlayListImpl <em>Play List</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see PlayList.impl.PlayListImpl
-	 * @see PlayList.impl.PlayListPackageImpl#getPlayList()
+	 * @see playlist.impl.PlayListImpl
+	 * @see playlist.impl.PlayListPackageImpl#getPlayList()
 	 * @generated
 	 */
 	int PLAY_LIST = 0;
 
 	/**
-	 * The feature id for the '<em><b>Video</b></em>' reference list.
+	 * The feature id for the '<em><b>Videos</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAY_LIST__VIDEO = 0;
+	int PLAY_LIST__VIDEOS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Play List</em>' class.
@@ -94,11 +94,11 @@ public interface PlayListPackage extends EPackage {
 	int PLAY_LIST_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link PlayList.impl.VideoImpl <em>Video</em>}' class.
+	 * The meta object id for the '{@link playlist.impl.VideoImpl <em>Video</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see PlayList.impl.VideoImpl
-	 * @see PlayList.impl.PlayListPackageImpl#getVideo()
+	 * @see playlist.impl.VideoImpl
+	 * @see playlist.impl.PlayListPackageImpl#getVideo()
 	 * @generated
 	 */
 	int VIDEO = 1;
@@ -150,64 +150,64 @@ public interface PlayListPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link PlayList.PlayList <em>Play List</em>}'.
+	 * Returns the meta object for class '{@link playlist.PlayList <em>Play List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Play List</em>'.
-	 * @see PlayList.PlayList
+	 * @see playlist.PlayList
 	 * @generated
 	 */
 	EClass getPlayList();
 
 	/**
-	 * Returns the meta object for the reference list '{@link PlayList.PlayList#getVideo <em>Video</em>}'.
+	 * Returns the meta object for the reference list '{@link playlist.PlayList#getVideos <em>Videos</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Video</em>'.
-	 * @see PlayList.PlayList#getVideo()
+	 * @return the meta object for the reference list '<em>Videos</em>'.
+	 * @see playlist.PlayList#getVideos()
 	 * @see #getPlayList()
 	 * @generated
 	 */
-	EReference getPlayList_Video();
+	EReference getPlayList_Videos();
 
 	/**
-	 * Returns the meta object for class '{@link PlayList.Video <em>Video</em>}'.
+	 * Returns the meta object for class '{@link playlist.Video <em>Video</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Video</em>'.
-	 * @see PlayList.Video
+	 * @see playlist.Video
 	 * @generated
 	 */
 	EClass getVideo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link PlayList.Video#getUrl <em>Url</em>}'.
+	 * Returns the meta object for the attribute '{@link playlist.Video#getUrl <em>Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Url</em>'.
-	 * @see PlayList.Video#getUrl()
+	 * @see playlist.Video#getUrl()
 	 * @see #getVideo()
 	 * @generated
 	 */
 	EAttribute getVideo_Url();
 
 	/**
-	 * Returns the meta object for the attribute '{@link PlayList.Video#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link playlist.Video#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see PlayList.Video#getDescription()
+	 * @see playlist.Video#getDescription()
 	 * @see #getVideo()
 	 * @generated
 	 */
 	EAttribute getVideo_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link PlayList.Video#getDuration <em>Duration</em>}'.
+	 * Returns the meta object for the attribute '{@link playlist.Video#getDuration <em>Duration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Duration</em>'.
-	 * @see PlayList.Video#getDuration()
+	 * @see playlist.Video#getDuration()
 	 * @see #getVideo()
 	 * @generated
 	 */
@@ -237,29 +237,29 @@ public interface PlayListPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link PlayList.impl.PlayListImpl <em>Play List</em>}' class.
+		 * The meta object literal for the '{@link playlist.impl.PlayListImpl <em>Play List</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see PlayList.impl.PlayListImpl
-		 * @see PlayList.impl.PlayListPackageImpl#getPlayList()
+		 * @see playlist.impl.PlayListImpl
+		 * @see playlist.impl.PlayListPackageImpl#getPlayList()
 		 * @generated
 		 */
 		EClass PLAY_LIST = eINSTANCE.getPlayList();
 
 		/**
-		 * The meta object literal for the '<em><b>Video</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Videos</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLAY_LIST__VIDEO = eINSTANCE.getPlayList_Video();
+		EReference PLAY_LIST__VIDEOS = eINSTANCE.getPlayList_Videos();
 
 		/**
-		 * The meta object literal for the '{@link PlayList.impl.VideoImpl <em>Video</em>}' class.
+		 * The meta object literal for the '{@link playlist.impl.VideoImpl <em>Video</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see PlayList.impl.VideoImpl
-		 * @see PlayList.impl.PlayListPackageImpl#getVideo()
+		 * @see playlist.impl.VideoImpl
+		 * @see playlist.impl.PlayListPackageImpl#getVideo()
 		 * @generated
 		 */
 		EClass VIDEO = eINSTANCE.getVideo();
