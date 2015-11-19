@@ -9,14 +9,10 @@ import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.videoGen.AlternativeRule;
-import org.xtext.example.mydsl.videoGen.MandatoryRule;
 import org.xtext.example.mydsl.videoGen.OptionnalRule;
-import org.xtext.example.mydsl.videoGen.Video;
 import org.xtext.example.mydsl.videoGen.VideoGen;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
 
 @SuppressWarnings("all")
 public class ReadVideogenFile {
@@ -29,36 +25,11 @@ public class ReadVideogenFile {
   }
   
   public PlayListFFMPEG apply() {
-    PlayListFFMPEG _xblockexpression = null;
-    {
-      final PlayListFFMPEG playList = new PlayListFFMPEG();
-      EList<Video> _videos = this.videogen.getVideos();
-      final Consumer<Video> _function = (Video video) -> {
-        if ((video instanceof MandatoryRule)) {
-          VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
-          String _url = _seq.getUrl();
-          playList.add(_url);
-        } else {
-          if ((video instanceof OptionnalRule)) {
-            boolean _canAddOptionnalVideo = this.canAddOptionnalVideo(((OptionnalRule)video));
-            if (_canAddOptionnalVideo) {
-              VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
-              String _url_1 = _seq_1.getUrl();
-              playList.add(_url_1);
-            }
-          } else {
-            if ((video instanceof AlternativeRule)) {
-              String _addAlternativeVideo = this.addAlternativeVideo(((AlternativeRule)video));
-              playList.add(_addAlternativeVideo);
-            }
-          }
-        }
-      };
-      _videos.forEach(_function);
-      InputOutput.<PlayListFFMPEG>println(playList);
-      _xblockexpression = playList;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method add is undefined for the type ReadVideogenFile"
+      + "\nThe method add is undefined for the type ReadVideogenFile"
+      + "\nThe method add is undefined for the type ReadVideogenFile"
+      + "\nCannot instantiate the interface type PlayList");
   }
   
   private boolean canAddOptionnalVideo(final OptionnalRule video) {

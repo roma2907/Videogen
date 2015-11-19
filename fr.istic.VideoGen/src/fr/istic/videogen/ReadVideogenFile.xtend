@@ -8,6 +8,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeRule
 import org.xtext.example.mydsl.videoGen.VideoSeq
 import java.util.Map.Entry
 import fr.istic.videogen.playlist.PlayListFFMPEG
+import PlayList.PlayList
 
 class ReadVideogenFile {
 	
@@ -19,6 +20,9 @@ class ReadVideogenFile {
 	}
 	
 	def apply(){
+		
+		new PlayList; 
+		
 		val playList = new PlayListFFMPEG
 		videogen.videos.forEach[video |
 			if(video instanceof MandatoryRule){
