@@ -4,6 +4,7 @@ import playlist.PlayList
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
+import playlist.Video
 
 class PlayListM3UEXT implements GeneratorFile {
 	/**
@@ -27,7 +28,12 @@ Bon Hits\Super artiste
 	}
 
 	override void generateFile() {
-
+		if(playList.videos.size==0){
+			System.err.println("Aucun élément dans la playlist")
+		}
+		// on crée ici les fichiers ts, on modifie aussi les urls de la playlist 
+		//pour qu'ils correspondent au ts créé
+		creationTSFilePlaylist(playList)
 		val f = new File("file.m3u");
 		val fw = new FileWriter(f);
 
@@ -36,18 +42,40 @@ Bon Hits\Super artiste
 
 		try {
 			playList.videos.forEach [ v |
+				fw.write("#EXT-X-DISCONTINUITY")
+				fw.write("\r\n")
 				fw.write("#EXTINF: "+v.duration+" "+v.description)
 				fw.write("\r\n");
 				fw.write(v.url);
 				fw.write("\r\n");
-
 			]
 			fw.close();
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
 	}
-	 
-	 
-	 
+	
+	/**
+	 * Parcours toutes les vidéos, et crée des fichier ts 
+	 */
+	def creationTSFilePlaylist(PlayList playlist) {
+		playlist.videos.forEach[v|
+			creationTSFile(v)
+		]
+	}
+	
+	def creationTSFile(Video video){
+		val newVideo = video.url.substring(0,video.url.lastIndexOf('.'))+".ts"
+		val rt = Runtime::runtime
+		val commande = "ffmpeg -i "+video.url+" -strict -2 -acodec aac -f mpegts "+newVideo
+		val cmd = #[
+			"/bin/bash",
+			"-c",
+			commande
+		]
+		rt.exec(cmd)
+		video.url = newVideo
+	}
+	
+	
 }

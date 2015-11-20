@@ -21,10 +21,16 @@ public class PlayListM3U implements GeneratorFile {
   @Override
   public void generateFile() {
     try {
+      EList<Video> _videos = this.playList.getVideos();
+      int _size = _videos.size();
+      boolean _equals = (_size == 0);
+      if (_equals) {
+        System.err.println("Aucun élément dans la playlist");
+      }
       final File f = new File("file.m3u");
       final FileWriter fw = new FileWriter(f);
       try {
-        EList<Video> _videos = this.playList.getVideos();
+        EList<Video> _videos_1 = this.playList.getVideos();
         final Consumer<Video> _function = (Video v) -> {
           try {
             String _url = v.getUrl();
@@ -34,7 +40,7 @@ public class PlayListM3U implements GeneratorFile {
             throw Exceptions.sneakyThrow(_e);
           }
         };
-        _videos.forEach(_function);
+        _videos_1.forEach(_function);
         fw.close();
       } catch (final Throwable _t) {
         if (_t instanceof IOException) {

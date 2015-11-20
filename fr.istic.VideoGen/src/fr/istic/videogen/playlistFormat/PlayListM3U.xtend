@@ -5,16 +5,18 @@ import java.io.File
 import java.io.FileWriter
 import playlist.PlayList
 
-class PlayListM3U implements GeneratorFile{
-	
+class PlayListM3U implements GeneratorFile {
+
 	val PlayList playList;
-	
+
 	new(PlayList pPlayList) {
 		playList = pPlayList
 	}
 
 	override void generateFile() {
-
+		if (playList.videos.size == 0) {
+			System.err.println("Aucun élément dans la playlist")
+		}
 		val f = new File("file.m3u");
 		val fw = new FileWriter(f);
 

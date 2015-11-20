@@ -178,7 +178,6 @@ public class ReadVideogenFile {
       final String durationStr = _split[1];
       final double durationDouble = Double.parseDouble(durationStr);
       final int duration = Double.valueOf(durationDouble).intValue();
-      InputOutput.<String>println(("duration = " + Integer.valueOf(duration)));
       return duration;
     } catch (final Throwable _t) {
       if (_t instanceof IOException) {

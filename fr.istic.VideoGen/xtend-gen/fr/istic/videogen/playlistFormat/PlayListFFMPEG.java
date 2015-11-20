@@ -31,7 +31,6 @@ public class PlayListFFMPEG implements GeneratorFile {
       boolean _equals = (_size == 0);
       if (_equals) {
         System.err.println("Aucun élément dans la playlist");
-        return;
       }
       final File f = new File("file.ffmpeg");
       final FileWriter fw = new FileWriter(f);

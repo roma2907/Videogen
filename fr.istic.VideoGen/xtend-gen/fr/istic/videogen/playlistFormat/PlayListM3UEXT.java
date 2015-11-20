@@ -4,8 +4,12 @@ import fr.istic.videogen.playlistFormat.GeneratorFile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import playlist.PlayList;
 import playlist.Video;
@@ -34,14 +38,23 @@ public class PlayListM3UEXT implements GeneratorFile {
   @Override
   public void generateFile() {
     try {
+      EList<Video> _videos = this.playList.getVideos();
+      int _size = _videos.size();
+      boolean _equals = (_size == 0);
+      if (_equals) {
+        System.err.println("Aucun élément dans la playlist");
+      }
+      this.creationTSFilePlaylist(this.playList);
       final File f = new File("file.m3u");
       final FileWriter fw = new FileWriter(f);
       fw.write("#EXTM3U");
       fw.write("\r\n");
       try {
-        EList<Video> _videos = this.playList.getVideos();
+        EList<Video> _videos_1 = this.playList.getVideos();
         final Consumer<Video> _function = (Video v) -> {
           try {
+            fw.write("#EXT-X-DISCONTINUITY");
+            fw.write("\r\n");
             int _duration = v.getDuration();
             String _plus = ("#EXTINF: " + Integer.valueOf(_duration));
             String _plus_1 = (_plus + " ");
@@ -56,7 +69,7 @@ public class PlayListM3UEXT implements GeneratorFile {
             throw Exceptions.sneakyThrow(_e);
           }
         };
-        _videos.forEach(_function);
+        _videos_1.forEach(_function);
         fw.close();
       } catch (final Throwable _t) {
         if (_t instanceof IOException) {
@@ -68,6 +81,37 @@ public class PlayListM3UEXT implements GeneratorFile {
           throw Exceptions.sneakyThrow(_t);
         }
       }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Parcours toutes les vidéos, et crée des fichier ts
+   */
+  public void creationTSFilePlaylist(final PlayList playlist) {
+    EList<Video> _videos = playlist.getVideos();
+    final Consumer<Video> _function = (Video v) -> {
+      this.creationTSFile(v);
+    };
+    _videos.forEach(_function);
+  }
+  
+  public void creationTSFile(final Video video) {
+    try {
+      String _url = video.getUrl();
+      String _url_1 = video.getUrl();
+      int _lastIndexOf = _url_1.lastIndexOf(".");
+      String _substring = _url.substring(0, _lastIndexOf);
+      final String newVideo = (_substring + ".ts");
+      final Runtime rt = Runtime.getRuntime();
+      String _url_2 = video.getUrl();
+      String _plus = ("ffmpeg -i " + _url_2);
+      String _plus_1 = (_plus + " -strict -2 -acodec aac -f mpegts ");
+      final String commande = (_plus_1 + newVideo);
+      final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
+      rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+      video.setUrl(newVideo);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

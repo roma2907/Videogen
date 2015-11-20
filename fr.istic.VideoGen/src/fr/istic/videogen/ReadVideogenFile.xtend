@@ -120,8 +120,6 @@ class ReadVideogenFile {
 			val durationStr = durationLine.split("=").get(1)
 			val durationDouble = Double.parseDouble(durationStr)
 			val duration = durationDouble.intValue
-	
-			println("duration = " + duration)
 			return duration;
 		} catch (IOException e) {
 			e.printStackTrace

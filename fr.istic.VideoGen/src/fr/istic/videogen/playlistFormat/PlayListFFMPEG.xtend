@@ -16,7 +16,6 @@ class PlayListFFMPEG implements GeneratorFile {
 	override void generateFile() {
 		if(playList.videos.size==0){
 			System.err.println("Aucun élément dans la playlist")
-			return;
 		}
 		
 		val f = new File("file.ffmpeg");
