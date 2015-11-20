@@ -10,6 +10,10 @@ import java.util.Map.Entry
 import org.xtext.example.mydsl.videoGen.VideoSeqMandatory
 import playlist.Video
 import playlist.PlayListFactory
+import java.io.File
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.IOException
 
 class ReadVideogenFile {
 	
@@ -91,10 +95,39 @@ class ReadVideogenFile {
 			val video = factory.createVideo
 			video.description = videoSeq.description
 			video.url = videoSeq.url
-			video.duration = videoSeq.dureeSeconde
-			
+			if(videoSeq.dureeSeconde!=0){
+				video.duration = videoSeq.dureeSeconde
+			}
+			else{
+				video.duration = getDurationByFfmpeg(video.url)
+			}
 			return video
 			
+	}
+	
+	private def int getDurationByFfmpeg(String file){
+		
+		val rt = Runtime::runtime
+		val cmd = #[
+			"/bin/sh", "-c", "ffprobe -i "+file+" -show_format | grep duration"
+		]
+
+		try {
+			val p = rt.exec(cmd)
+	
+			val stdInput = new BufferedReader(
+				new InputStreamReader(p.inputStream))
+			val durationLine = stdInput.readLine
+			val durationStr = durationLine.split("=").get(1)
+			val durationDouble = Double.parseDouble(durationStr)
+			val duration = durationDouble.intValue
+	
+			println("duration = " + duration)
+			return duration;
+		} catch (IOException e) {
+			e.printStackTrace
+			return 0
+		}
 	}
 	
 	private def Video createVideoSeqToPlayList(VideoSeqMandatory videoSeq,PlayListFactory factory){
