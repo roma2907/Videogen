@@ -39,6 +39,7 @@ class VideoDemonstration {
 		videoGens.videos.filter(MandatoryRule).forEach[p|
 			if(p.seq.id !=null){
 				assertFalse(existingID.contains(p.seq.id));
+				assertTrue(p.seq.dureeSeconde >= 0);
 				existingID.add(p.seq.id)
 			}
 		]
@@ -46,6 +47,8 @@ class VideoDemonstration {
 		videoGens.videos.filter(OptionnalRule).forEach[p|
 			if(p.seq.id !=null){
 				assertFalse(existingID.contains(p.seq.id));
+				assertTrue(p.seq.proprobabilitePercent<=100 && p.seq.proprobabilitePercent>0);
+				assertTrue(p.seq.dureeSeconde >= 0);
 				existingID.add(p.seq.id)
 			}
 		]
@@ -64,11 +67,6 @@ class VideoDemonstration {
 		]
 		
 		
-		//vérification probabilté optionnal <= 100%
-		val numProbaOptionnal= videoGens.videos.filter(OptionnalRule).fold(0)[i1,OptionnalRule o |
-			i1 + o.seq.proprobabilitePercent	
-		]
-		assertTrue(numProbaOptionnal<=100);
 		
 		//vérification probabilté alternative <= 100%
 		videoGens.videos.filter(AlternativeRule).forEach[p|

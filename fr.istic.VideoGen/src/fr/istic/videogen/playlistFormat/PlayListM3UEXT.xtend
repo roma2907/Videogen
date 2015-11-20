@@ -5,7 +5,7 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 
-class PlayListM3UEXT {
+class PlayListM3UEXT implements GeneratorFile {
 	/**
 	 * #EXTM3U
 
@@ -26,7 +26,7 @@ Bon Hits\Super artiste
 		playList = pPlayList
 	}
 
-	def void generateFile() {
+	override void generateFile() {
 
 		val f = new File("file.m3u");
 		val fw = new FileWriter(f);
@@ -37,6 +37,7 @@ Bon Hits\Super artiste
 		try {
 			playList.videos.forEach [ v |
 				fw.write("#EXTINF: "+v.duration+" "+v.description)
+				fw.write("\r\n");
 				fw.write(v.url);
 				fw.write("\r\n");
 

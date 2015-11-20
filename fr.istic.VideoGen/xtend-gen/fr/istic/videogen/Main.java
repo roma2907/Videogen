@@ -1,7 +1,10 @@
 package fr.istic.videogen;
 
 import fr.istic.videogen.ReadVideogenFile;
+import fr.istic.videogen.playlistFormat.GeneratorFile;
 import fr.istic.videogen.playlistFormat.PlayListFFMPEG;
+import fr.istic.videogen.playlistFormat.PlayListM3U;
+import fr.istic.videogen.playlistFormat.PlayListM3UEXT;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -14,18 +17,39 @@ import playlist.PlayList;
 @SuppressWarnings("all")
 public class Main {
   public static void main(final String[] args) {
+    boolean _or = false;
     int _length = args.length;
-    boolean _notEquals = (_length != 1);
-    if (_notEquals) {
+    boolean _equals = (_length == 1);
+    if (_equals) {
+      _or = true;
+    } else {
+      int _length_1 = args.length;
+      boolean _equals_1 = (_length_1 == 2);
+      _or = _equals_1;
+    }
+    boolean _not = (!_or);
+    if (_not) {
       throw new IllegalArgumentException();
     }
     String _get = args[0];
     URI _createURI = URI.createURI(_get);
     VideoGen videogen = Main.loadVideoGen(_createURI);
     ReadVideogenFile readFile = new ReadVideogenFile(videogen);
+    String _get_1 = args[1];
     PlayList _apply = readFile.apply();
-    final PlayListFFMPEG ffmpeg = new PlayListFFMPEG(_apply);
-    ffmpeg.generateFile();
+    final GeneratorFile generator = Main.createGenerator(_get_1, _apply);
+    generator.generateFile();
+  }
+  
+  private static GeneratorFile createGenerator(final String arg, final PlayList playlist) {
+    switch (arg) {
+      case "m3u":
+        return new PlayListM3U(playlist);
+      case "m3uext":
+        return new PlayListM3UEXT(playlist);
+      default:
+        return new PlayListFFMPEG(playlist);
+    }
   }
   
   /**

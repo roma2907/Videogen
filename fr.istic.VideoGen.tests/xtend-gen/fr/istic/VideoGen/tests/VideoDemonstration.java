@@ -75,7 +75,11 @@ public class VideoDemonstration {
         boolean _contains = existingID.contains(_id_1);
         Assert.assertFalse(_contains);
         VideoSeqMandatory _seq_2 = p.getSeq();
-        String _id_2 = _seq_2.getId();
+        int _dureeSeconde = _seq_2.getDureeSeconde();
+        boolean _greaterEqualsThan = (_dureeSeconde >= 0);
+        Assert.assertTrue(_greaterEqualsThan);
+        VideoSeqMandatory _seq_3 = p.getSeq();
+        String _id_2 = _seq_3.getId();
         existingID.add(_id_2);
       }
     };
@@ -91,8 +95,25 @@ public class VideoDemonstration {
         String _id_1 = _seq_1.getId();
         boolean _contains = existingID.contains(_id_1);
         Assert.assertFalse(_contains);
+        boolean _and = false;
         VideoSeq _seq_2 = p.getSeq();
-        String _id_2 = _seq_2.getId();
+        int _proprobabilitePercent = _seq_2.getProprobabilitePercent();
+        boolean _lessEqualsThan = (_proprobabilitePercent <= 100);
+        if (!_lessEqualsThan) {
+          _and = false;
+        } else {
+          VideoSeq _seq_3 = p.getSeq();
+          int _proprobabilitePercent_1 = _seq_3.getProprobabilitePercent();
+          boolean _greaterThan = (_proprobabilitePercent_1 > 0);
+          _and = _greaterThan;
+        }
+        Assert.assertTrue(_and);
+        VideoSeq _seq_4 = p.getSeq();
+        int _dureeSeconde = _seq_4.getDureeSeconde();
+        boolean _greaterEqualsThan = (_dureeSeconde >= 0);
+        Assert.assertTrue(_greaterEqualsThan);
+        VideoSeq _seq_5 = p.getSeq();
+        String _id_2 = _seq_5.getId();
         existingID.add(_id_2);
       }
     };
@@ -125,36 +146,27 @@ public class VideoDemonstration {
     };
     _filter_2.forEach(_function_2);
     EList<Video> _videos_4 = videoGens.getVideos();
-    Iterable<OptionnalRule> _filter_3 = Iterables.<OptionnalRule>filter(_videos_4, OptionnalRule.class);
-    final Function2<Integer, OptionnalRule, Integer> _function_3 = (Integer i1, OptionnalRule o) -> {
-      VideoSeq _seq = o.getSeq();
-      int _proprobabilitePercent = _seq.getProprobabilitePercent();
-      return Integer.valueOf(((i1).intValue() + _proprobabilitePercent));
-    };
-    final Integer numProbaOptionnal = IterableExtensions.<OptionnalRule, Integer>fold(_filter_3, Integer.valueOf(0), _function_3);
-    Assert.assertTrue(((numProbaOptionnal).intValue() <= 100));
-    EList<Video> _videos_5 = videoGens.getVideos();
-    Iterable<AlternativeRule> _filter_4 = Iterables.<AlternativeRule>filter(_videos_5, AlternativeRule.class);
-    final Consumer<AlternativeRule> _function_4 = (AlternativeRule p) -> {
+    Iterable<AlternativeRule> _filter_3 = Iterables.<AlternativeRule>filter(_videos_4, AlternativeRule.class);
+    final Consumer<AlternativeRule> _function_3 = (AlternativeRule p) -> {
       EList<VideoSeq> _alternatves = p.getAlternatves();
-      Iterable<VideoSeq> _filter_5 = Iterables.<VideoSeq>filter(_alternatves, VideoSeq.class);
-      final Function2<Integer, VideoSeq, Integer> _function_5 = (Integer i1, VideoSeq o) -> {
+      Iterable<VideoSeq> _filter_4 = Iterables.<VideoSeq>filter(_alternatves, VideoSeq.class);
+      final Function2<Integer, VideoSeq, Integer> _function_4 = (Integer i1, VideoSeq o) -> {
         int _proprobabilitePercent = o.getProprobabilitePercent();
         return Integer.valueOf(((i1).intValue() + _proprobabilitePercent));
       };
-      final Integer probaAlternative = IterableExtensions.<VideoSeq, Integer>fold(_filter_5, Integer.valueOf(0), _function_5);
+      final Integer probaAlternative = IterableExtensions.<VideoSeq, Integer>fold(_filter_4, Integer.valueOf(0), _function_4);
       Assert.assertTrue(((probaAlternative).intValue() <= 100));
     };
-    _filter_4.forEach(_function_4);
+    _filter_3.forEach(_function_3);
     URI _createURI_1 = URI.createURI("videogen1.xmi");
     this.saveVideoGen(_createURI_1, videoGens);
-    EList<Video> _videos_6 = videoGens.getVideos();
-    Iterable<MandatoryRule> _filter_5 = Iterables.<MandatoryRule>filter(_videos_6, MandatoryRule.class);
-    final Consumer<MandatoryRule> _function_5 = (MandatoryRule p) -> {
+    EList<Video> _videos_5 = videoGens.getVideos();
+    Iterable<MandatoryRule> _filter_4 = Iterables.<MandatoryRule>filter(_videos_5, MandatoryRule.class);
+    final Consumer<MandatoryRule> _function_4 = (MandatoryRule p) -> {
       VideoSeqMandatory _seq = p.getSeq();
       _seq.setUrl("coucou");
     };
-    _filter_5.forEach(_function_5);
+    _filter_4.forEach(_function_4);
     URI _createURI_2 = URI.createURI("test3.videogen");
     this.saveVideoGen(_createURI_2, videoGens);
   }

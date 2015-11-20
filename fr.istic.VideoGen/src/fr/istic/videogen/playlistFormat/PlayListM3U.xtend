@@ -5,7 +5,7 @@ import java.io.File
 import java.io.FileWriter
 import playlist.PlayList
 
-class PlayListM3U {
+class PlayListM3U implements GeneratorFile{
 	
 	val PlayList playList;
 	
@@ -13,7 +13,7 @@ class PlayListM3U {
 		playList = pPlayList
 	}
 
-	def void generateFile() {
+	override void generateFile() {
 
 		val f = new File("file.m3u");
 		val fw = new FileWriter(f);

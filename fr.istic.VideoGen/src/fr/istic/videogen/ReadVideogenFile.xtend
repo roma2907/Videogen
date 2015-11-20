@@ -92,9 +92,7 @@ class ReadVideogenFile {
 			video.description = videoSeq.description
 			video.url = videoSeq.url
 			video.duration = videoSeq.dureeSeconde
-			
 			return video
-			
 	}
 	
 	private def Video createVideoSeqToPlayList(VideoSeqMandatory videoSeq,PlayListFactory factory){

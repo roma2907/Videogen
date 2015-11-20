@@ -5,7 +5,7 @@ import java.io.FileWriter
 import java.io.IOException
 import playlist.PlayList
 
-class PlayListFFMPEG {
+class PlayListFFMPEG implements GeneratorFile {
 
 	val PlayList playList;
 
@@ -13,11 +13,15 @@ class PlayListFFMPEG {
 		playList = pPlayList
 	}
 
-	def void generateFile() {
-
+	override void generateFile() {
+		if(playList.videos.size==0){
+			System.err.println("Aucun élément dans la playlist")
+			return;
+		}
+		
 		val f = new File("file.ffmpeg");
 		val fw = new FileWriter(f);
-
+		
 		try {
 			playList.videos.forEach [ v |
 				fw.write("file " + "'" + v.url + "'");
@@ -28,6 +32,8 @@ class PlayListFFMPEG {
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
+		//requis que ffmpeg soit installé sur la machine
+		//appel de ffmpeg pour concaténer les vidéos ensemble
 		val rt = Runtime::runtime
 		val commande = "ffmpeg -y -f concat -i "+ f.absolutePath+" -c copy ../output.avi"
 		val cmd = #[
@@ -35,7 +41,6 @@ class PlayListFFMPEG {
 			"-c",
 			commande
 		]
-		
 		rt.exec(cmd)
 	}
 
