@@ -1,13 +1,21 @@
 package fr.istic.videogen;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.videoGen.AlternativeRule;
 import org.xtext.example.mydsl.videoGen.MandatoryRule;
@@ -145,8 +153,42 @@ public class ReadVideogenFile {
     String _url = videoSeq.getUrl();
     video.setUrl(_url);
     int _dureeSeconde = videoSeq.getDureeSeconde();
-    video.setDuration(_dureeSeconde);
+    boolean _notEquals = (_dureeSeconde != 0);
+    if (_notEquals) {
+      int _dureeSeconde_1 = videoSeq.getDureeSeconde();
+      video.setDuration(_dureeSeconde_1);
+    } else {
+      String _url_1 = video.getUrl();
+      int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
+      video.setDuration(_durationByFfmpeg);
+    }
     return video;
+  }
+  
+  private int getDurationByFfmpeg(final String file) {
+    final Runtime rt = Runtime.getRuntime();
+    final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/sh", "-c", (("ffprobe -i " + file) + " -show_format | grep duration")));
+    try {
+      final Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+      InputStream _inputStream = p.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      final BufferedReader stdInput = new BufferedReader(_inputStreamReader);
+      final String durationLine = stdInput.readLine();
+      String[] _split = durationLine.split("=");
+      final String durationStr = _split[1];
+      final double durationDouble = Double.parseDouble(durationStr);
+      final int duration = Double.valueOf(durationDouble).intValue();
+      InputOutput.<String>println(("duration = " + Integer.valueOf(duration)));
+      return duration;
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        e.printStackTrace();
+        return 0;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   private playlist.Video createVideoSeqToPlayList(final VideoSeqMandatory videoSeq, final PlayListFactory factory) {
@@ -158,7 +200,15 @@ public class ReadVideogenFile {
       String _url = videoSeq.getUrl();
       video.setUrl(_url);
       int _dureeSeconde = videoSeq.getDureeSeconde();
-      video.setDuration(_dureeSeconde);
+      boolean _notEquals = (_dureeSeconde != 0);
+      if (_notEquals) {
+        int _dureeSeconde_1 = videoSeq.getDureeSeconde();
+        video.setDuration(_dureeSeconde_1);
+      } else {
+        String _url_1 = video.getUrl();
+        int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
+        video.setDuration(_durationByFfmpeg);
+      }
       _xblockexpression = video;
     }
     return _xblockexpression;
