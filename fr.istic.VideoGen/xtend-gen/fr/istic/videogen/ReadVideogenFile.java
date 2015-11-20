@@ -112,11 +112,13 @@ public class ReadVideogenFile {
       }
       final int sizeNoProba = listAlternativeWithNoProba.size();
       if ((sizeNoProba != 0)) {
-        final int probaForAl = (probaRestante / sizeNoProba);
-        final Consumer<VideoSeq> _function = (VideoSeq a_1) -> {
+        int probaForAl = (probaRestante / sizeNoProba);
+        if (((probaRestante % probaForAl) != 0)) {
+          probaForAl++;
+        }
+        for (final VideoSeq a_1 : listAlternativeWithNoProba) {
           mapProbability.put(a_1, Integer.valueOf(probaForAl));
-        };
-        listAlternativeWithNoProba.forEach(_function);
+        }
       }
       final int aleatoire = this.random.nextInt(100);
       int parcours = 0;

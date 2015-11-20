@@ -6,13 +6,13 @@ import java.io.IOException
 import playlist.PlayList
 
 class PlayListFFMPEG {
-	
+
 	val PlayList playList;
-	
-	new(PlayList pPlayList){
-		playList=pPlayList
+
+	new(PlayList pPlayList) {
+		playList = pPlayList
 	}
-	
+
 	def void generateFile() {
 
 		val f = new File("file.ffmpeg");
@@ -20,17 +20,23 @@ class PlayListFFMPEG {
 
 		try {
 			playList.videos.forEach [ v |
-
-				fw.write("file:" + "'" + v.url + "'");
+				fw.write("file " + "'" + v.url + "'");
 				fw.write("\r\n");
-
 			]
 			fw.close();
 			println("fin");
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
+		val rt = Runtime::runtime
+		val commande = "ffmpeg -y -f concat -i "+ f.absolutePath+" -c copy ../output.avi"
+		val cmd = #[
+			"/bin/bash",
+			"-c",
+			commande
+		]
 		
+		rt.exec(cmd)
 	}
-	
+
 }

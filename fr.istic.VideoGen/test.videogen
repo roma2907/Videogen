@@ -1,16 +1,4 @@
 VideoGen{
-	mandatory videoseq v1 "bip" description : "description1" 
-	optional videoseq v2 "url1" probability : 30 duration : 150
-	optional videoseq v9 "url2" probability : 50 duration : 150
-	optional videoseq v8 "url3" probability : 90 duration : 150
-	mandatory videoseq v12 "test" description : "description1" 
-	alternatives v3 {
-		videoseq "salut" 
-		videoseq va "url"
-	 }
-	 
-	 alternatives v4{
-	 	videoseq v6 "folder/test.mp4" description : "test1" probability: 40 duration:120
-	 	videoseq v7 "folder/test.mp5" description : "test2" probability: 60 duration:120
-	 }
+	optional videoseq v1 "../video1.mp4" description : "description1" 
+	optional videoseq v2 "../video2.mp4" description : "description1" 
 }
