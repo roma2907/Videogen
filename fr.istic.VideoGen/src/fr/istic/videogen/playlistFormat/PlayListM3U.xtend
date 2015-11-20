@@ -15,7 +15,7 @@ class PlayListM3U {
 
 	def void generateFile() {
 
-		val f = new File("file.ffmpeg");
+		val f = new File("file.m3u");
 		val fw = new FileWriter(f);
 
 		try {
