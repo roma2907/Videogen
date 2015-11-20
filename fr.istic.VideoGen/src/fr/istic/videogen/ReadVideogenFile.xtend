@@ -68,10 +68,13 @@ class ReadVideogenFile {
 		//on partage le reste des probabilités entre les alternatives qui n'avait pas de probabilité au début
 		val sizeNoProba = listAlternativeWithNoProba.size() 
 		if(sizeNoProba != 0){
-			val probaForAl = probaRestante / sizeNoProba
-			listAlternativeWithNoProba.forEach[a|
+			var probaForAl = probaRestante / sizeNoProba
+			if(probaRestante % probaForAl != 0){
+				probaForAl++;
+			}
+			for(VideoSeq a :listAlternativeWithNoProba){
 				mapProbability.put(a,probaForAl);
-			]
+			}
 		}
 		val aleatoire=random.nextInt(100)
 		var parcours=0;
