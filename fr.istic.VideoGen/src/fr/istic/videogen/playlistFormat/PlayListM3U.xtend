@@ -13,7 +13,7 @@ class PlayListM3U implements GeneratorFile {
 		playList = pPlayList
 	}
 
-	override void generateFile() {
+	override String generateFile() {
 		if (playList.videos.size == 0) {
 			System.err.println("Aucun élément dans la playlist")
 		}
@@ -31,5 +31,6 @@ class PlayListM3U implements GeneratorFile {
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
+		f.absolutePath
 	}
 }

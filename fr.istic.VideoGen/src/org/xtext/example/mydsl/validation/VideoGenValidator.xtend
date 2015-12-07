@@ -3,6 +3,14 @@
  */
 package org.xtext.example.mydsl.validation
 
+import org.xtext.example.mydsl.videoGen.AlternativeRule
+import org.eclipse.xtext.validation.Check
+import org.xtext.example.mydsl.videoGen.VideoSeq
+import org.xtext.example.mydsl.videoGen.VideoGenPackage
+import org.xtext.example.mydsl.videoGen.VideoGen
+import java.io.File
+import org.xtext.example.mydsl.videoGen.VideoSeqMandatory
+
 //import org.eclipse.xtext.validation.Check
 
 /**
@@ -22,4 +30,32 @@ class VideoGenValidator extends AbstractVideoGenValidator {
 //					INVALID_NAME)
 //		}
 //	}
+
+	@Check
+	def probabilityAlternativeInferiorOrEgalACent(AlternativeRule alternative){
+		//somme des probabilités de chaque alternative
+		val probaAlternative= alternative.alternatves.filter(VideoSeq).fold(0)[i1,VideoSeq o |
+					i1 + o.proprobabilitePercent	
+		]
+		if(probaAlternative > 100){
+			error("La somme des probailités d'une alternative ne peut pas être supérieur à 100.",alternative.eClass().getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES))
+		}
+	}
+	
+	@Check
+	def verifyIfFileExist(VideoSeq videoSeq){
+		val file = new File(videoSeq.url)
+		if(!file.exists || file.isDirectory){
+			error("L'url ne correspond pas à un fichier.",videoSeq.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ__URL))	
+		}
+	}	
+	
+	@Check
+	def verifyIfFileExistMandatory(VideoSeqMandatory videoSeq){
+		val file = new File(videoSeq.url)
+		if(!file.exists || file.isDirectory){
+			error("L'url ne correspond pas à un fichier.",videoSeq.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ_MANDATORY__URL))	
+		}
+	}
+	
 }

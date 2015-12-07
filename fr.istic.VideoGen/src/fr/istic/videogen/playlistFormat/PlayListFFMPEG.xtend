@@ -13,7 +13,7 @@ class PlayListFFMPEG implements GeneratorFile {
 		playList = pPlayList
 	}
 
-	override void generateFile() {
+	override String generateFile() {
 		if(playList.videos.size==0){
 			System.err.println("Aucun élément dans la playlist")
 		}
@@ -41,6 +41,7 @@ class PlayListFFMPEG implements GeneratorFile {
 			commande
 		]
 		rt.exec(cmd)
+		f.absolutePath
 	}
 
 }

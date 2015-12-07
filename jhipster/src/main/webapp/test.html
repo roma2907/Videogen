@@ -1,0 +1,81 @@
+
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8"></meta>
+            <title></title>
+            <!--
+
+             optimize mobile versions 
+
+            -->
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+            <!--
+
+             The "functional" skin, "functional.css", "minimal…
+
+            -->
+            <link href="//releases.flowplayer.org/6.0.4/skin/functional.css" rel="stylesheet"></link>
+            <!--
+
+             Minimal styling for this standalone page (can be …
+
+            -->
+            <style></style>
+            <!--
+
+             CSS for this demo 
+
+            -->
+            <link href="//flowplayer.org/media/css/demos/plugins/hlsjs.css" rel="stylesheet"></link>
+            <!--
+
+             Flowplayer
+
+            -->
+            <script src="//releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
+            <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
+        </head>
+        <body>
+            <div id="content">
+                <div id="fp-hlsjs" class="is-closeable is-splash flowplayer is-paused is-mouseout" data-flowplayer-instance-id="0">
+                </div>
+                <script>
+
+
+                   
+flowplayer("#fp-hlsjs", {
+    splash: true,
+    ratio: 9/16,
+    clip: {
+        title: "...", // updated on ready
+        sources: [
+            { type: "application/x-mpegurl",
+              src:  "//stream.flowplayer.org/drive.m3u8" },
+            { type: "video/webm",
+              src:  "//stream.flowplayer.org/drive.webm" },
+            { type: "video/mp4",
+              src:  "//stream.flowplayer.org/drive.mp4" }
+        ]
+    },
+    embed: false
+
+}).on("ready", function (e, api, video) {
+    document.querySelector("#fp-hlsjs .fp-title").innerHTML =
+            api.engine.engineName + " engine playing " + video.type;
+
+});
+
+
+                </script>
+            </div>
+            <!--
+
+            /end content 
+
+            -->
+        </body>
+    </html>
+
+

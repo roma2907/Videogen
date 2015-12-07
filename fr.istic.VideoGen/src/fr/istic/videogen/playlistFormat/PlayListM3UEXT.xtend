@@ -27,14 +27,14 @@ Bon Hits\Super artiste
 		playList = pPlayList
 	}
 
-	override void generateFile() {
+	override String generateFile() {
 		if(playList.videos.size==0){
 			System.err.println("Aucun élément dans la playlist")
 		}
 		// on crée ici les fichiers ts, on modifie aussi les urls de la playlist 
 		//pour qu'ils correspondent au ts créé
 		creationTSFilePlaylist(playList)
-		val f = new File("file.m3u");
+		val f = new File("file.m3u8");
 		val fw = new FileWriter(f);
 
 		fw.write("#EXTM3U")
@@ -53,6 +53,7 @@ Bon Hits\Super artiste
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
+		f.absolutePath
 	}
 	
 	/**
