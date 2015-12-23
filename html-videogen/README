@@ -1,0 +1,4 @@
+sudo apt-get install apache2
+decompresser dans /var/www
+http://127.0.0.1/test/menu.html
+

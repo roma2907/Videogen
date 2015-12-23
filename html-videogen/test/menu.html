@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+	<title>VideoGen</title>
+	<meta charset="UTF-8">
+	<!-- 1. skin -->
+    <link rel="stylesheet" href="http://releases.flowplayer.org/6.0.4/skin/functional.css">
+     
+    <!-- 2. jquery library - required for video tag based installs -->
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+     
+    <!-- 3. flowplayer -->
+    <script src="http://releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
+	<style type="text/css">
+		.active{border: 5px solid green}
+		.center{text-align: center; margin-left: auto; margin-right: auto;display:block;}
+		.img{margin-bottom:5px;}
+	</style>
+	</head>
+	<body>
+	    <div class="page-header center"><h1>VideoGen</h1></div><div class="flowplayer">
+           <video>
+                     <source type="application/x-mpegurl" src="//127.0.0.1/test/echoEtendu.m3u8">
+           </video>
+        </div>
+	</body>
+</html>
