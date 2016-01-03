@@ -1,0 +1,4 @@
+VideoGen{
+	optional videoseq v1 "video1.mp4" description : "description1" probability:70
+	optional videoseq v2 "video2.mp4" description : "description1" probability:70
+}

@@ -21,10 +21,12 @@ Bon Hits\Exemple.ogg
 Bon Hits\Super artiste
 	 */
 	 
-	 val PlayList playList;
-	
-	new(PlayList pPlayList) {
+	val PlayList playList;
+	val String fileOut;
+
+	new(PlayList pPlayList,String pFileOut) {
 		playList = pPlayList
+		fileOut = pFileOut
 	}
 
 	override String generateFile() {
@@ -34,7 +36,7 @@ Bon Hits\Super artiste
 		// on crée ici les fichiers ts, on modifie aussi les urls de la playlist 
 		//pour qu'ils correspondent au ts créé
 		creationTSFilePlaylist(playList)
-		val f = new File("file.m3u8");
+		val f = new File(fileOut);
 		val fw = new FileWriter(f);
 
 		fw.write("#EXTM3U")
@@ -53,7 +55,7 @@ Bon Hits\Super artiste
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
-		f.absolutePath
+		f.toString
 	}
 	
 	/**

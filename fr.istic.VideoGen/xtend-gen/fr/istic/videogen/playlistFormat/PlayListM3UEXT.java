@@ -31,8 +31,11 @@ public class PlayListM3UEXT implements GeneratorFile {
    */
   private final PlayList playList;
   
-  public PlayListM3UEXT(final PlayList pPlayList) {
+  private final String fileOut;
+  
+  public PlayListM3UEXT(final PlayList pPlayList, final String pFileOut) {
     this.playList = pPlayList;
+    this.fileOut = pFileOut;
   }
   
   @Override
@@ -47,7 +50,7 @@ public class PlayListM3UEXT implements GeneratorFile {
           System.err.println("Aucun élément dans la playlist");
         }
         this.creationTSFilePlaylist(this.playList);
-        final File f = new File("file.m3u8");
+        final File f = new File(this.fileOut);
         final FileWriter fw = new FileWriter(f);
         fw.write("#EXTM3U");
         fw.write("\r\n");
@@ -83,7 +86,7 @@ public class PlayListM3UEXT implements GeneratorFile {
             throw Exceptions.sneakyThrow(_t);
           }
         }
-        _xblockexpression = f.getAbsolutePath();
+        _xblockexpression = f.toString();
       }
       return _xblockexpression;
     } catch (Throwable _e) {

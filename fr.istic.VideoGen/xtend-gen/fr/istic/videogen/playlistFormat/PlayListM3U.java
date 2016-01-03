@@ -14,8 +14,11 @@ import playlist.Video;
 public class PlayListM3U implements GeneratorFile {
   private final PlayList playList;
   
-  public PlayListM3U(final PlayList pPlayList) {
+  private final String fileOut;
+  
+  public PlayListM3U(final PlayList pPlayList, final String pFileOut) {
     this.playList = pPlayList;
+    this.fileOut = pFileOut;
   }
   
   @Override
@@ -29,7 +32,7 @@ public class PlayListM3U implements GeneratorFile {
         if (_equals) {
           System.err.println("Aucun élément dans la playlist");
         }
-        final File f = new File("file.m3u");
+        final File f = new File(this.fileOut);
         final FileWriter fw = new FileWriter(f);
         try {
           EList<Video> _videos_1 = this.playList.getVideos();

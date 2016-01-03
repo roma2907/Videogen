@@ -19,8 +19,11 @@ import playlist.Video;
 public class PlayListFFMPEG implements GeneratorFile {
   private final PlayList playList;
   
-  public PlayListFFMPEG(final PlayList pPlayList) {
+  private final String fileOut;
+  
+  public PlayListFFMPEG(final PlayList pPlayList, final String pFileOut) {
     this.playList = pPlayList;
+    this.fileOut = pFileOut;
   }
   
   @Override
@@ -34,7 +37,7 @@ public class PlayListFFMPEG implements GeneratorFile {
         if (_equals) {
           System.err.println("Aucun élément dans la playlist");
         }
-        final File f = new File("file.ffmpeg");
+        final File f = new File(this.fileOut);
         final FileWriter fw = new FileWriter(f);
         try {
           EList<Video> _videos_1 = this.playList.getVideos();

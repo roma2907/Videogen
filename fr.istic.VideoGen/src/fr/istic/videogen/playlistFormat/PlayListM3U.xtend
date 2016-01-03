@@ -8,16 +8,18 @@ import playlist.PlayList
 class PlayListM3U implements GeneratorFile {
 
 	val PlayList playList;
+	val String fileOut;
 
-	new(PlayList pPlayList) {
+	new(PlayList pPlayList,String pFileOut) {
 		playList = pPlayList
+		fileOut = pFileOut
 	}
 
 	override String generateFile() {
 		if (playList.videos.size == 0) {
 			System.err.println("Aucun élément dans la playlist")
 		}
-		val f = new File("file.m3u");
+		val f = new File(fileOut);
 		val fw = new FileWriter(f);
 
 		try {

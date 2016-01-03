@@ -8,9 +8,11 @@ import playlist.PlayList
 class PlayListFFMPEG implements GeneratorFile {
 
 	val PlayList playList;
+	val String fileOut;
 
-	new(PlayList pPlayList) {
+	new(PlayList pPlayList,String pFileOut) {
 		playList = pPlayList
+		fileOut = pFileOut
 	}
 
 	override String generateFile() {
@@ -18,7 +20,7 @@ class PlayListFFMPEG implements GeneratorFile {
 			System.err.println("Aucun élément dans la playlist")
 		}
 		
-		val f = new File("file.ffmpeg");
+		val f = new File(fileOut);
 		val fw = new FileWriter(f);
 		
 		try {

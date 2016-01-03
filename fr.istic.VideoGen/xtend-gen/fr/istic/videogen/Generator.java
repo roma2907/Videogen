@@ -5,6 +5,7 @@ import fr.istic.videogen.playlistFormat.GeneratorFile;
 import fr.istic.videogen.playlistFormat.PlayListFFMPEG;
 import fr.istic.videogen.playlistFormat.PlayListM3U;
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT;
+import fr.istic.videogen.playlistFormat.TypeGenerator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -17,28 +18,34 @@ import playlist.PlayList;
 
 @SuppressWarnings("all")
 public class Generator {
-  public static String createVideo(final String file, final String format) {
+  public static String createVideo(final String file, final TypeGenerator type, final String fileOut) {
     String _xblockexpression = null;
     {
-      InputOutput.<String>println(((file + "\n") + format));
+      String _name = type.name();
+      String _plus = ((file + "\n") + _name);
+      InputOutput.<String>println(_plus);
       URI _createURI = URI.createURI(file);
       VideoGen videogen = Generator.loadVideoGen(_createURI);
       ReadVideogenFile readFile = new ReadVideogenFile(videogen);
       PlayList _apply = readFile.apply();
-      final GeneratorFile generator = Generator.createGenerator(format, _apply);
+      final GeneratorFile generator = Generator.createGenerator(type, _apply, fileOut);
       _xblockexpression = generator.generateFile();
     }
     return _xblockexpression;
   }
   
-  private static GeneratorFile createGenerator(final String arg, final PlayList playlist) {
-    switch (arg) {
-      case "m3u":
-        return new PlayListM3U(playlist);
-      case "m3uext":
-        return new PlayListM3UEXT(playlist);
-      default:
-        return new PlayListFFMPEG(playlist);
+  private static GeneratorFile createGenerator(final TypeGenerator type, final PlayList playlist, final String fileOut) {
+    if (type != null) {
+      switch (type) {
+        case M3U:
+          return new PlayListM3U(playlist, fileOut);
+        case M3UEXT:
+          return new PlayListM3UEXT(playlist, fileOut);
+        default:
+          return new PlayListFFMPEG(playlist, fileOut);
+      }
+    } else {
+      return new PlayListFFMPEG(playlist, fileOut);
     }
   }
   

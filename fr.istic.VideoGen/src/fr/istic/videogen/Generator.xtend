@@ -13,22 +13,23 @@ import fr.istic.videogen.playlistFormat.PlayListM3U
 import playlist.PlayList
 import fr.istic.videogen.playlistFormat.GeneratorFile
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT
+import fr.istic.videogen.playlistFormat.TypeGenerator
 
 class Generator {
 	
-	 def static String createVideo(String file,String format) {
-	 	println(file + "\n"+format)
+	 def static String createVideo(String file,TypeGenerator type,String fileOut) {
+	 	println(file + "\n"+type.name)
 		var videogen = loadVideoGen(URI.createURI(file));
 		var readFile = new ReadVideogenFile(videogen);
-		val generator = createGenerator(format,readFile.apply());
+		val generator = createGenerator(type,readFile.apply(),fileOut);
 		generator.generateFile
 	}
 	
-	private static def GeneratorFile createGenerator(String arg,PlayList playlist){
-		switch(arg){
-			case "m3u":return new PlayListM3U(playlist)
-			case "m3uext":return new PlayListM3UEXT(playlist)
-			default:return new PlayListFFMPEG(playlist)
+	private static def GeneratorFile createGenerator(TypeGenerator type,PlayList playlist,String fileOut){
+		switch(type){
+			case TypeGenerator.M3U:return new PlayListM3U(playlist,fileOut)
+			case TypeGenerator.M3UEXT:return new PlayListM3UEXT(playlist,fileOut)
+			default:return new PlayListFFMPEG(playlist,fileOut)
 		}
 	}
 	
