@@ -31,9 +31,9 @@ angular.module('generatorVideoApp', ['LocalStorageModule',
 
             // Set the page title key to the one configured in state or use default one
             if(!toState.data===undefined){
-            if (toState.data.pageTitle) {
-                titleKey = toState.data.pageTitle;
-            }
+	            if (toState.data.pageTitle) {
+	                titleKey = toState.data.pageTitle;
+	            }
             }
             $window.document.title = titleKey;
         });

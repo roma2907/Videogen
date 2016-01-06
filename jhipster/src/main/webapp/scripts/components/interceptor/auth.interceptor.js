@@ -14,6 +14,7 @@ angular.module('generatorVideoApp')
                     Auth.logout();
                     $rootScope.previousStateName = to;
                     $rootScope.previousStateNameParams = params;
+                    $state.go('login');
                 }
                 return $q.reject(response);
             }
