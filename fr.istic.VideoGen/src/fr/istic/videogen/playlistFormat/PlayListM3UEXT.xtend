@@ -1,9 +1,11 @@
 package fr.istic.videogen.playlistFormat
 
-import playlist.PlayList
+import java.io.BufferedReader
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
+import java.io.InputStreamReader
+import playlist.PlayList
 import playlist.Video
 
 class PlayListM3UEXT implements GeneratorFile {
@@ -48,7 +50,7 @@ Bon Hits\Super artiste
 				fw.write("\r\n")
 				fw.write("#EXTINF: "+v.duration+" "+v.description)
 				fw.write("\r\n");
-				fw.write(v.url);
+				fw.write(v.url.replace("src/main/webapp",""));
 				fw.write("\r\n");
 			]
 			fw.close();
@@ -70,13 +72,22 @@ Bon Hits\Super artiste
 	def creationTSFile(Video video){
 		val newVideo = video.url.substring(0,video.url.lastIndexOf('.'))+".ts"
 		val rt = Runtime::runtime
-		val commande = "ffmpeg -i "+video.url+" -strict -2 -acodec aac -f mpegts "+newVideo
+		val commande = "ffmpeg -i "+video.url+" -strict -2 -acodec aac -vcodec h264  -f mpegts -y "+newVideo
 		val cmd = #[
 			"/bin/bash",
 			"-c",
 			commande
 		]
-		rt.exec(cmd)
+		val p=rt.exec(cmd)
+		val stdErr = new BufferedReader(
+				new InputStreamReader(p.errorStream)
+				)
+				
+				var c=stdErr.read;
+				while(c!=-1){
+					System.err.print(c as char)
+					c=stdErr.read;
+				}
 		video.url = newVideo
 	}
 	

@@ -1,0 +1,4 @@
+#EXTM3U
+#EXT-X-DISCONTINUITY
+#EXTINF: 14 description1
+/resources/video2.ts

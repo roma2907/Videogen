@@ -39,7 +39,8 @@ public class PlayListM3U implements GeneratorFile {
           final Consumer<Video> _function = (Video v) -> {
             try {
               String _url = v.getUrl();
-              fw.write(_url);
+              String _replace = _url.replace("src/main/webapp", "");
+              fw.write(_replace);
               fw.write("\r\n");
             } catch (Throwable _e) {
               throw Exceptions.sneakyThrow(_e);

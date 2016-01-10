@@ -1,0 +1,3 @@
+VideoGen{
+	optional videoseq v2 "src/main/webapp/resources/je_suis_ton_pere.mp4" description : "description1" probability:70
+}

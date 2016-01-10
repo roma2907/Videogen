@@ -14,12 +14,13 @@ import playlist.PlayList
 import fr.istic.videogen.playlistFormat.GeneratorFile
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT
 import fr.istic.videogen.playlistFormat.TypeGenerator
+import java.net.URL
 
 class Generator {
 	
-	 def static String createVideo(String file,TypeGenerator type,String fileOut) {
-	 	println(file + "\n"+type.name)
-		var videogen = loadVideoGen(URI.createURI(file));
+	 def static String createVideo(URL url,TypeGenerator type,String fileOut) {
+	 	
+		var videogen = loadVideoGen(URI.createURI(url.file));
 		var readFile = new ReadVideogenFile(videogen);
 		val generator = createGenerator(type,readFile.apply(),fileOut);
 		generator.generateFile

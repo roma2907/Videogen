@@ -44,7 +44,8 @@ public class PlayListFFMPEG implements GeneratorFile {
           final Consumer<Video> _function = (Video v) -> {
             try {
               String _url = v.getUrl();
-              String _plus = (("file " + "\'") + _url);
+              String _replace = _url.replace("src/main/webapp", "");
+              String _plus = (("file " + "\'") + _replace);
               String _plus_1 = (_plus + "\'");
               fw.write(_plus_1);
               fw.write("\r\n");

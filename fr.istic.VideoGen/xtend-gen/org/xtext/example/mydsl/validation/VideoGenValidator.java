@@ -3,7 +3,19 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import com.google.common.collect.Iterables;
+import java.io.File;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.mydsl.validation.AbstractVideoGenValidator;
+import org.xtext.example.mydsl.videoGen.AlternativeRule;
+import org.xtext.example.mydsl.videoGen.VideoGenPackage;
+import org.xtext.example.mydsl.videoGen.VideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
 
 /**
  * This class contains custom validation rules.
@@ -12,4 +24,59 @@ import org.xtext.example.mydsl.validation.AbstractVideoGenValidator;
  */
 @SuppressWarnings("all")
 public class VideoGenValidator extends AbstractVideoGenValidator {
+  @Check
+  public void probabilityAlternativeInferiorOrEgalACent(final AlternativeRule alternative) {
+    EList<VideoSeq> _alternatves = alternative.getAlternatves();
+    Iterable<VideoSeq> _filter = Iterables.<VideoSeq>filter(_alternatves, VideoSeq.class);
+    final Function2<Integer, VideoSeq, Integer> _function = (Integer i1, VideoSeq o) -> {
+      int _proprobabilitePercent = o.getProprobabilitePercent();
+      return Integer.valueOf(((i1).intValue() + _proprobabilitePercent));
+    };
+    final Integer probaAlternative = IterableExtensions.<VideoSeq, Integer>fold(_filter, Integer.valueOf(0), _function);
+    if (((probaAlternative).intValue() > 100)) {
+      EClass _eClass = alternative.eClass();
+      EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES);
+      this.error("La somme des probailités d\'une alternative ne peut pas être supérieur à 100.", _eStructuralFeature);
+    }
+  }
+  
+  @Check
+  public void verifyIfFileExist(final VideoSeq videoSeq) {
+    String _url = videoSeq.getUrl();
+    final File file = new File(_url);
+    boolean _or = false;
+    boolean _exists = file.exists();
+    boolean _not = (!_exists);
+    if (_not) {
+      _or = true;
+    } else {
+      boolean _isDirectory = file.isDirectory();
+      _or = _isDirectory;
+    }
+    if (_or) {
+      EClass _eClass = videoSeq.eClass();
+      EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ__URL);
+      this.error("L\'url ne correspond pas à un fichier.", _eStructuralFeature);
+    }
+  }
+  
+  @Check
+  public void verifyIfFileExistMandatory(final VideoSeqMandatory videoSeq) {
+    String _url = videoSeq.getUrl();
+    final File file = new File(_url);
+    boolean _or = false;
+    boolean _exists = file.exists();
+    boolean _not = (!_exists);
+    if (_not) {
+      _or = true;
+    } else {
+      boolean _isDirectory = file.isDirectory();
+      _or = _isDirectory;
+    }
+    if (_or) {
+      EClass _eClass = videoSeq.eClass();
+      EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ_MANDATORY__URL);
+      this.error("L\'url ne correspond pas à un fichier.", _eStructuralFeature);
+    }
+  }
 }

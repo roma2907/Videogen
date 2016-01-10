@@ -1,9 +1,12 @@
 package fr.istic.videogen.playlistFormat;
 
 import fr.istic.videogen.playlistFormat.GeneratorFile;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
@@ -68,7 +71,8 @@ public class PlayListM3UEXT implements GeneratorFile {
               fw.write(_plus_2);
               fw.write("\r\n");
               String _url = v.getUrl();
-              fw.write(_url);
+              String _replace = _url.replace("src/main/webapp", "");
+              fw.write(_replace);
               fw.write("\r\n");
             } catch (Throwable _e) {
               throw Exceptions.sneakyThrow(_e);
@@ -115,10 +119,21 @@ public class PlayListM3UEXT implements GeneratorFile {
       final Runtime rt = Runtime.getRuntime();
       String _url_2 = video.getUrl();
       String _plus = ("ffmpeg -i " + _url_2);
-      String _plus_1 = (_plus + " -strict -2 -acodec aac -f mpegts ");
+      String _plus_1 = (_plus + " -strict -2 -acodec aac -vcodec h264  -f mpegts -y ");
       final String commande = (_plus_1 + newVideo);
       final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
-      rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+      final Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+      InputStream _errorStream = p.getErrorStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_errorStream);
+      final BufferedReader stdErr = new BufferedReader(_inputStreamReader);
+      int c = stdErr.read();
+      while ((c != (-1))) {
+        {
+          System.err.print(((char) c));
+          int _read = stdErr.read();
+          c = _read;
+        }
+      }
       video.setUrl(newVideo);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

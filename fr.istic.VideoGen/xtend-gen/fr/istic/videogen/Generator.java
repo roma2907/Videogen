@@ -6,25 +6,23 @@ import fr.istic.videogen.playlistFormat.PlayListFFMPEG;
 import fr.istic.videogen.playlistFormat.PlayListM3U;
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT;
 import fr.istic.videogen.playlistFormat.TypeGenerator;
+import java.net.URL;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGen;
 import playlist.PlayList;
 
 @SuppressWarnings("all")
 public class Generator {
-  public static String createVideo(final String file, final TypeGenerator type, final String fileOut) {
+  public static String createVideo(final URL url, final TypeGenerator type, final String fileOut) {
     String _xblockexpression = null;
     {
-      String _name = type.name();
-      String _plus = ((file + "\n") + _name);
-      InputOutput.<String>println(_plus);
-      URI _createURI = URI.createURI(file);
+      String _file = url.getFile();
+      URI _createURI = URI.createURI(_file);
       VideoGen videogen = Generator.loadVideoGen(_createURI);
       ReadVideogenFile readFile = new ReadVideogenFile(videogen);
       PlayList _apply = readFile.apply();

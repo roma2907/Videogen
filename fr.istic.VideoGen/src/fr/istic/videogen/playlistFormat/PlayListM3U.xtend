@@ -25,7 +25,7 @@ class PlayListM3U implements GeneratorFile {
 		try {
 			playList.videos.forEach [ v |
 
-				fw.write(v.url);
+				fw.write(v.url.replace("src/main/webapp",""));
 				fw.write("\r\n");
 
 			]

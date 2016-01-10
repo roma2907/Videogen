@@ -1,7 +1,7 @@
 angular.module('generatorVideoApp')
     .controller('VideoController', function ($scope, Video) {
-       $scope.generateVideo=function(){
-
+       
+    	$scope.generateVideo=function(){
     	    Video.generate(function(v) {
     	    	
     	    	$scope.showPlayer=true;
@@ -10,6 +10,7 @@ angular.module('generatorVideoApp')
     	    });
     	    
     	    $scope.play=function(url){
+    	    	console.log(url);
     	    	flowplayer("PLAYERID", "http://40ansenfete.irisa.fr/assets/flash/flowplayer.swf", {
  	    		   wmode: 'direct',
  	    		   plugins: {
@@ -46,5 +47,6 @@ angular.module('generatorVideoApp')
  	    		});
 
     	    };
+
        };
     });

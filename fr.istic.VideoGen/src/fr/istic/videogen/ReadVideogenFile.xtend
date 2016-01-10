@@ -113,9 +113,18 @@ class ReadVideogenFile {
 
 		try {
 			val p = rt.exec(cmd)
-	
+			val stdErr = new BufferedReader(
+				new InputStreamReader(p.errorStream)
+				)
+				
+				var c=stdErr.read;
+				while(c!=-1){
+					System.err.print(c as char)
+					c=stdErr.read;
+				}
 			val stdInput = new BufferedReader(
 				new InputStreamReader(p.inputStream))
+				System.out.println(stdInput)
 			val durationLine = stdInput.readLine
 			val durationStr = durationLine.split("=").get(1)
 			val durationDouble = Double.parseDouble(durationStr)

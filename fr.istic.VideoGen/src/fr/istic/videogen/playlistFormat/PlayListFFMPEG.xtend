@@ -25,7 +25,7 @@ class PlayListFFMPEG implements GeneratorFile {
 		
 		try {
 			playList.videos.forEach [ v |
-				fw.write("file " + "'" + v.url + "'");
+				fw.write("file " + "'" + v.url.replace("src/main/webapp","") + "'");
 				fw.write("\r\n");
 			]
 			fw.close();
