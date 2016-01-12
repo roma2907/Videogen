@@ -57,7 +57,7 @@ class VideoDemonstration {
 			if(p.id !=null){
 				assertFalse(existingID.contains(p.id));
 				existingID.add(p.id)
-				p.alternatves.forEach[a|
+				p.alternatives.forEach[a|
 					if(a.id !=null){
 						assertFalse(existingID.contains(a.id));
 						existingID.add(a.id)
@@ -70,7 +70,7 @@ class VideoDemonstration {
 		
 		//vérification probabilté alternative <= 100%
 		videoGens.videos.filter(AlternativeRule).forEach[p|
-				val probaAlternative= p.alternatves.filter(VideoSeq).fold(0)[i1,VideoSeq o |
+				val probaAlternative= p.alternatives.filter(VideoSeq).fold(0)[i1,VideoSeq o |
 					i1 + o.proprobabilitePercent	
 				]
 				assertTrue(probaAlternative<=100);

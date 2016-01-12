@@ -1,7 +1,0 @@
-#EXTM3U
-#EXT-X-DISCONTINUITY
-#EXTINF: 15 intro LOTR
-/resources/video1.ts
-#EXT-X-DISCONTINUITY
-#EXTINF: 14 description1
-/resources/video2.ts
