@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.istic.videogen.Generator;
-import fr.istic.videogen.VideoWithImage;
 import fr.istic.videogen.playlistFormat.TypeGenerator;
+import fr.istic.videogen.vignette.VideoWithImage;
 
 
 
