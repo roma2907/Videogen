@@ -50,9 +50,9 @@ angular.module('generatorVideoApp')
 
        };
 
-        /*$http.get('/video/vignettes').success(function (data) {
+        $http.get('http://localhost:8080/api/video/vignettes').success(function (data) {
             $scope.vignettes =data;
-        });*/
+        });
 
 
 
