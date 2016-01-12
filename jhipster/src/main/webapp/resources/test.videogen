@@ -12,7 +12,7 @@ VideoGen{
 		videoseq v1 "src/main/webapp/resources/optalt5.mp4"
 	}
 
-	optional videoseq v1 "src/main/webapp/resources/end1.mp4" description : "description1" probability:7
+	optional videoseq v1 "src/main/webapp/resources/end1.mp4" description : "description1" probability:70
 
     mandatory videoseq v1 "src/main/webapp/resources/end2.mp4" description : "end LOTR"
 
