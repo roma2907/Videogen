@@ -17,7 +17,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AlternativeRule" eSuperTypes="#//Video">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatves" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" upperBound="-1"
         eType="#//VideoSeq" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VideoSeq">

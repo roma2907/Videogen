@@ -19,7 +19,7 @@
     </genClasses>
     <genClasses ecoreClass="VideoGen.ecore#//AlternativeRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//AlternativeRule/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//AlternativeRule/alternatves"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//AlternativeRule/alternatives"/>
     </genClasses>
     <genClasses ecoreClass="VideoGen.ecore#//VideoSeq">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoSeq/id"/>

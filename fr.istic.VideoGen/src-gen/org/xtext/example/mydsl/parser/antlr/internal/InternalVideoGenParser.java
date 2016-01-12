@@ -627,7 +627,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAlternativeRule"
-    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:263:1: ruleAlternativeRule returns [EObject current=null] : (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatves_3_0= ruleVideoSeq ) )+ otherlv_4= '}' ) ;
+    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:263:1: ruleAlternativeRule returns [EObject current=null] : (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatives_3_0= ruleVideoSeq ) )+ otherlv_4= '}' ) ;
     public final EObject ruleAlternativeRule() throws RecognitionException {
         EObject current = null;
 
@@ -635,17 +635,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
         Token lv_id_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        EObject lv_alternatves_3_0 = null;
+        EObject lv_alternatives_3_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:266:28: ( (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatves_3_0= ruleVideoSeq ) )+ otherlv_4= '}' ) )
-            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:1: (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatves_3_0= ruleVideoSeq ) )+ otherlv_4= '}' )
+            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:266:28: ( (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatives_3_0= ruleVideoSeq ) )+ otherlv_4= '}' ) )
+            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:1: (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatives_3_0= ruleVideoSeq ) )+ otherlv_4= '}' )
             {
-            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:1: (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatves_3_0= ruleVideoSeq ) )+ otherlv_4= '}' )
-            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:3: otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatves_3_0= ruleVideoSeq ) )+ otherlv_4= '}'
+            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:1: (otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatives_3_0= ruleVideoSeq ) )+ otherlv_4= '}' )
+            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:267:3: otherlv_0= 'alternatives' ( (lv_id_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_alternatives_3_0= ruleVideoSeq ) )+ otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleAlternativeRule605); 
 
@@ -681,7 +681,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getAlternativeRuleAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:293:1: ( (lv_alternatves_3_0= ruleVideoSeq ) )+
+            // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:293:1: ( (lv_alternatives_3_0= ruleVideoSeq ) )+
             int cnt3=0;
             loop3:
             do {
@@ -695,16 +695,16 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:294:1: (lv_alternatves_3_0= ruleVideoSeq )
+            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:294:1: (lv_alternatives_3_0= ruleVideoSeq )
             	    {
-            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:294:1: (lv_alternatves_3_0= ruleVideoSeq )
-            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:295:3: lv_alternatves_3_0= ruleVideoSeq
+            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:294:1: (lv_alternatives_3_0= ruleVideoSeq )
+            	    // ../fr.istic.VideoGen/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:295:3: lv_alternatives_3_0= ruleVideoSeq
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getAlternativeRuleAccess().getAlternatvesVideoSeqParserRuleCall_3_0()); 
+            	    	        newCompositeNode(grammarAccess.getAlternativeRuleAccess().getAlternativesVideoSeqParserRuleCall_3_0()); 
             	    	    
             	    pushFollow(FOLLOW_ruleVideoSeq_in_ruleAlternativeRule660);
-            	    lv_alternatves_3_0=ruleVideoSeq();
+            	    lv_alternatives_3_0=ruleVideoSeq();
 
             	    state._fsp--;
 
@@ -714,8 +714,8 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             	    	        }
             	           		add(
             	           			current, 
-            	           			"alternatves",
-            	            		lv_alternatves_3_0, 
+            	           			"alternatives",
+            	            		lv_alternatives_3_0, 
             	            		"VideoSeq");
             	    	        afterParserOrEnumRuleCall();
             	    	    

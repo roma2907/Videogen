@@ -102,8 +102,8 @@ public class ReadVideogenFile {
       final HashMap<VideoSeq, Integer> mapProbability = CollectionLiterals.<VideoSeq, Integer>newHashMap();
       int probaRestante = 100;
       final ArrayList<VideoSeq> listAlternativeWithNoProba = CollectionLiterals.<VideoSeq>newArrayList();
-      EList<VideoSeq> _alternatves = video.getAlternatves();
-      for (final VideoSeq a : _alternatves) {
+      EList<VideoSeq> _alternatives = video.getAlternatives();
+      for (final VideoSeq a : _alternatives) {
         {
           int _proprobabilitePercent = a.getProprobabilitePercent();
           boolean _notEquals = (_proprobabilitePercent != 0);

@@ -11,7 +11,7 @@ MandatoryRule : 'mandatory' seq=VideoSeqMandatory ;
 
 OptionnalRule : 'optional' seq=VideoSeq ;
 
-AlternativeRule : 'alternatives' id=ID '{' alternatves+=VideoSeq+ '}';
+AlternativeRule : 'alternatives' id=ID '{' alternatives+=VideoSeq+ '}';
 
 VideoSeq: 'videoseq' (id=ID)?  url=STRING 
 	('description' ':' description=STRING)? 

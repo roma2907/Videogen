@@ -1634,42 +1634,42 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AlternativeRule__Group__3__Impl"
-    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:644:1: rule__AlternativeRule__Group__3__Impl : ( ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* ) ) ;
+    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:644:1: rule__AlternativeRule__Group__3__Impl : ( ( ( rule__AlternativeRule__AlternativesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternativesAssignment_3 )* ) ) ;
     public final void rule__AlternativeRule__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:648:1: ( ( ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* ) ) )
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:649:1: ( ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* ) )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:648:1: ( ( ( ( rule__AlternativeRule__AlternativesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternativesAssignment_3 )* ) ) )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:649:1: ( ( ( rule__AlternativeRule__AlternativesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternativesAssignment_3 )* ) )
             {
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:649:1: ( ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* ) )
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:650:1: ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:649:1: ( ( ( rule__AlternativeRule__AlternativesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternativesAssignment_3 )* ) )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:650:1: ( ( rule__AlternativeRule__AlternativesAssignment_3 ) ) ( ( rule__AlternativeRule__AlternativesAssignment_3 )* )
             {
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:650:1: ( ( rule__AlternativeRule__AlternatvesAssignment_3 ) )
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:651:1: ( rule__AlternativeRule__AlternatvesAssignment_3 )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:650:1: ( ( rule__AlternativeRule__AlternativesAssignment_3 ) )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:651:1: ( rule__AlternativeRule__AlternativesAssignment_3 )
             {
-             before(grammarAccess.getAlternativeRuleAccess().getAlternatvesAssignment_3()); 
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:652:1: ( rule__AlternativeRule__AlternatvesAssignment_3 )
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:652:2: rule__AlternativeRule__AlternatvesAssignment_3
+             before(grammarAccess.getAlternativeRuleAccess().getAlternativesAssignment_3()); 
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:652:1: ( rule__AlternativeRule__AlternativesAssignment_3 )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:652:2: rule__AlternativeRule__AlternativesAssignment_3
             {
-            pushFollow(FOLLOW_rule__AlternativeRule__AlternatvesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1268);
-            rule__AlternativeRule__AlternatvesAssignment_3();
+            pushFollow(FOLLOW_rule__AlternativeRule__AlternativesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1268);
+            rule__AlternativeRule__AlternativesAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getAlternativeRuleAccess().getAlternatvesAssignment_3()); 
+             after(grammarAccess.getAlternativeRuleAccess().getAlternativesAssignment_3()); 
 
             }
 
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:655:1: ( ( rule__AlternativeRule__AlternatvesAssignment_3 )* )
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:656:1: ( rule__AlternativeRule__AlternatvesAssignment_3 )*
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:655:1: ( ( rule__AlternativeRule__AlternativesAssignment_3 )* )
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:656:1: ( rule__AlternativeRule__AlternativesAssignment_3 )*
             {
-             before(grammarAccess.getAlternativeRuleAccess().getAlternatvesAssignment_3()); 
-            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:657:1: ( rule__AlternativeRule__AlternatvesAssignment_3 )*
+             before(grammarAccess.getAlternativeRuleAccess().getAlternativesAssignment_3()); 
+            // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:657:1: ( rule__AlternativeRule__AlternativesAssignment_3 )*
             loop3:
             do {
                 int alt3=2;
@@ -1682,10 +1682,10 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
                 switch (alt3) {
             	case 1 :
-            	    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:657:2: rule__AlternativeRule__AlternatvesAssignment_3
+            	    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:657:2: rule__AlternativeRule__AlternativesAssignment_3
             	    {
-            	    pushFollow(FOLLOW_rule__AlternativeRule__AlternatvesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1280);
-            	    rule__AlternativeRule__AlternatvesAssignment_3();
+            	    pushFollow(FOLLOW_rule__AlternativeRule__AlternativesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1280);
+            	    rule__AlternativeRule__AlternativesAssignment_3();
 
             	    state._fsp--;
 
@@ -1698,7 +1698,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
                 }
             } while (true);
 
-             after(grammarAccess.getAlternativeRuleAccess().getAlternatvesAssignment_3()); 
+             after(grammarAccess.getAlternativeRuleAccess().getAlternativesAssignment_3()); 
 
             }
 
@@ -4085,9 +4085,9 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__AlternativeRule__IdAssignment_1"
 
 
-    // $ANTLR start "rule__AlternativeRule__AlternatvesAssignment_3"
-    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:1592:1: rule__AlternativeRule__AlternatvesAssignment_3 : ( ruleVideoSeq ) ;
-    public final void rule__AlternativeRule__AlternatvesAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__AlternativeRule__AlternativesAssignment_3"
+    // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:1592:1: rule__AlternativeRule__AlternativesAssignment_3 : ( ruleVideoSeq ) ;
+    public final void rule__AlternativeRule__AlternativesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -4098,13 +4098,13 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:1597:1: ( ruleVideoSeq )
             // ../fr.istic.VideoGen.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalVideoGen.g:1598:1: ruleVideoSeq
             {
-             before(grammarAccess.getAlternativeRuleAccess().getAlternatvesVideoSeqParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleVideoSeq_in_rule__AlternativeRule__AlternatvesAssignment_33133);
+             before(grammarAccess.getAlternativeRuleAccess().getAlternativesVideoSeqParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_ruleVideoSeq_in_rule__AlternativeRule__AlternativesAssignment_33133);
             ruleVideoSeq();
 
             state._fsp--;
 
-             after(grammarAccess.getAlternativeRuleAccess().getAlternatvesVideoSeqParserRuleCall_3_0()); 
+             after(grammarAccess.getAlternativeRuleAccess().getAlternativesVideoSeqParserRuleCall_3_0()); 
 
             }
 
@@ -4123,7 +4123,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end "rule__AlternativeRule__AlternatvesAssignment_3"
+    // $ANTLR end "rule__AlternativeRule__AlternativesAssignment_3"
 
 
     // $ANTLR start "rule__VideoSeq__IdAssignment_1"
@@ -4519,8 +4519,8 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_12_in_rule__AlternativeRule__Group__2__Impl1205 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AlternativeRule__Group__3__Impl_in_rule__AlternativeRule__Group__31236 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_rule__AlternativeRule__Group__4_in_rule__AlternativeRule__Group__31239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AlternativeRule__AlternatvesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1268 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_rule__AlternativeRule__AlternatvesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1280 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_rule__AlternativeRule__AlternativesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1268 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_rule__AlternativeRule__AlternativesAssignment_3_in_rule__AlternativeRule__Group__3__Impl1280 = new BitSet(new long[]{0x0000000000020002L});
     public static final BitSet FOLLOW_rule__AlternativeRule__Group__4__Impl_in_rule__AlternativeRule__Group__41313 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__AlternativeRule__Group__4__Impl1341 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VideoSeq__Group__0__Impl_in_rule__VideoSeq__Group__01382 = new BitSet(new long[]{0x0000000000000030L});
@@ -4598,7 +4598,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_ruleVideoSeqMandatory_in_rule__MandatoryRule__SeqAssignment_13040 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVideoSeq_in_rule__OptionnalRule__SeqAssignment_13071 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__AlternativeRule__IdAssignment_13102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVideoSeq_in_rule__AlternativeRule__AlternatvesAssignment_33133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVideoSeq_in_rule__AlternativeRule__AlternativesAssignment_33133 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__VideoSeq__IdAssignment_13164 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__VideoSeq__UrlAssignment_23195 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__VideoSeq__DescriptionAssignment_3_23226 = new BitSet(new long[]{0x0000000000000002L});

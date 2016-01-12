@@ -59,47 +59,50 @@ public class Generator {
       URI _createURI = URI.createURI(_file);
       VideoGen videogen = Generator.loadVideoGen(_createURI);
       final ArrayList<VideoWithImage> list = CollectionLiterals.<VideoWithImage>newArrayList();
-      EList<Video> _videos = videogen.getVideos();
-      final Consumer<Video> _function = (Video video) -> {
-        if ((video instanceof MandatoryRule)) {
-          VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
-          String _url = _seq.getUrl();
-          String _createImage = Generator.createImage(_url);
-          SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, EnumTypeVideo.MANDATORY);
-          list.add(_singleVideoWithImage);
-        } else {
-          if ((video instanceof OptionnalRule)) {
-            VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
-            String _url_1 = _seq_1.getUrl();
-            String _createImage_1 = Generator.createImage(_url_1);
-            SingleVideoWithImage _singleVideoWithImage_1 = new SingleVideoWithImage(_createImage_1, EnumTypeVideo.OPTIONNAL);
-            list.add(_singleVideoWithImage_1);
+      int i = 0;
+      for (i = 0; (i < ((Object[])Conversions.unwrapArray(videogen.getVideos(), Object.class)).length); i++) {
+        {
+          EList<Video> _videos = videogen.getVideos();
+          Video video = _videos.get(i);
+          if ((video instanceof MandatoryRule)) {
+            VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
+            String _url = _seq.getUrl();
+            String _createImage = Generator.createImage(_url);
+            SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, EnumTypeVideo.MANDATORY, i);
+            list.add(_singleVideoWithImage);
           } else {
-            if ((video instanceof AlternativeRule)) {
-              AlternativeVideoWithImage _createImageAlternative = Generator.createImageAlternative(((AlternativeRule)video));
-              list.add(_createImageAlternative);
+            if ((video instanceof OptionnalRule)) {
+              VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
+              String _url_1 = _seq_1.getUrl();
+              String _createImage_1 = Generator.createImage(_url_1);
+              SingleVideoWithImage _singleVideoWithImage_1 = new SingleVideoWithImage(_createImage_1, EnumTypeVideo.OPTIONNAL, i);
+              list.add(_singleVideoWithImage_1);
+            } else {
+              if ((video instanceof AlternativeRule)) {
+                AlternativeVideoWithImage _createImageAlternative = Generator.createImageAlternative(((AlternativeRule)video), i);
+                list.add(_createImageAlternative);
+              }
             }
           }
         }
-      };
-      _videos.forEach(_function);
+      }
       _xblockexpression = list;
     }
     return _xblockexpression;
   }
   
-  private static AlternativeVideoWithImage createImageAlternative(final AlternativeRule alternative) {
+  private static AlternativeVideoWithImage createImageAlternative(final AlternativeRule alternative, final int i) {
     AlternativeVideoWithImage _xblockexpression = null;
     {
       final AlternativeVideoWithImage alternativeVideoWithImage = new AlternativeVideoWithImage();
-      EList<VideoSeq> _alternatves = alternative.getAlternatves();
+      EList<VideoSeq> _alternatives = alternative.getAlternatives();
       final Consumer<VideoSeq> _function = (VideoSeq alter) -> {
         String _url = alter.getUrl();
         String _createImage = Generator.createImage(_url);
-        SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, null);
+        SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, null, i);
         alternativeVideoWithImage.videos.add(_singleVideoWithImage);
       };
-      _alternatves.forEach(_function);
+      _alternatives.forEach(_function);
       alternativeVideoWithImage.type = EnumTypeVideo.ALTERNATIVE;
       _xblockexpression = alternativeVideoWithImage;
     }
@@ -116,7 +119,7 @@ public class Generator {
         final Runtime rt = Runtime.getRuntime();
         final String commande = ((("ffmpeg -y -i " + url) + " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 ") + newImage);
         final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
-        final Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+        rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
         int _lastIndexOf_1 = newImage.lastIndexOf("/");
         int _length = newImage.length();
         _xblockexpression = newImage.substring(_lastIndexOf_1, _length);

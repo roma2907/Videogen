@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.videoGen.AlternativeRule#getId <em>Id</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatves <em>Alternatves</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatives <em>Alternatives</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getAlternativeRule()
@@ -50,19 +50,19 @@ public interface AlternativeRule extends Video
   void setId(String value);
 
   /**
-   * Returns the value of the '<em><b>Alternatves</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Alternatives</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.videoGen.VideoSeq}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Alternatves</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Alternatives</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Alternatves</em>' containment reference list.
-   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getAlternativeRule_Alternatves()
+   * @return the value of the '<em>Alternatives</em>' containment reference list.
+   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getAlternativeRule_Alternatives()
    * @model containment="true"
    * @generated
    */
-  EList<VideoSeq> getAlternatves();
+  EList<VideoSeq> getAlternatives();
 
 } // AlternativeRule

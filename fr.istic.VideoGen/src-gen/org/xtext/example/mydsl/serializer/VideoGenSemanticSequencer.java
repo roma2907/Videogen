@@ -58,7 +58,7 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (id=ID alternatves+=VideoSeq+)
+	 *     (id=ID alternatives+=VideoSeq+)
 	 */
 	protected void sequence_AlternativeRule(EObject context, AlternativeRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -19,6 +19,7 @@ import org.xtext.example.mydsl.videoGen.MandatoryRule
 import org.xtext.example.mydsl.videoGen.OptionnalRule
 import org.xtext.example.mydsl.videoGen.VideoGen
 import playlist.PlayList
+import org.xtext.example.mydsl.videoGen.Video
 
 class Generator {
 	
@@ -36,22 +37,24 @@ class Generator {
 	def static List<VideoWithImage> createVignette(URL url){
 		var videogen = loadVideoGen(URI.createURI(url.file));
 		val list = newArrayList
-		videogen.videos.forEach[video |
+		var int i;
+		for( i=0;i<videogen.videos.length();i++){
+			var video = videogen.videos.get(i)
 			if(video instanceof MandatoryRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.MANDATORY))
+				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.MANDATORY,i))
 			}else if(video instanceof OptionnalRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.OPTIONNAL))
+				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.OPTIONNAL,i))
 			}else if(video instanceof AlternativeRule){
-				list.add(createImageAlternative(video))
+				list.add(createImageAlternative(video,i))
 			}
-		]
+		}
 		list
 	}
 	
-	private static def createImageAlternative(AlternativeRule alternative){
+	private static def createImageAlternative(AlternativeRule alternative,int i){
 		val AlternativeVideoWithImage alternativeVideoWithImage= new AlternativeVideoWithImage
-		alternative.alternatves.forEach[alter |
-			alternativeVideoWithImage.videos.add(new SingleVideoWithImage(createImage(alter.url),null))
+		alternative.alternatives.forEach[alter |
+			alternativeVideoWithImage.videos.add(new SingleVideoWithImage(createImage(alter.url),null,i))
 		]
 		alternativeVideoWithImage.type = EnumTypeVideo.ALTERNATIVE
 		alternativeVideoWithImage
@@ -67,7 +70,7 @@ class Generator {
 			"-c",
 			commande
 		]
-		val p=rt.exec(cmd)
+		rt.exec(cmd)
 		newImage.substring(newImage.lastIndexOf('/'),newImage.length())
 	}
 	
@@ -86,5 +89,6 @@ class Generator {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
 		res.contents.get(0) as VideoGen
+ 
 	}
 }

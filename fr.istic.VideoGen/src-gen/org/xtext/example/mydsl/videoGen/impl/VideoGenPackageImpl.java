@@ -234,7 +234,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAlternativeRule_Alternatves()
+  public EReference getAlternativeRule_Alternatives()
   {
     return (EReference)alternativeRuleEClass.getEStructuralFeatures().get(1);
   }
@@ -392,7 +392,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 
     alternativeRuleEClass = createEClass(ALTERNATIVE_RULE);
     createEAttribute(alternativeRuleEClass, ALTERNATIVE_RULE__ID);
-    createEReference(alternativeRuleEClass, ALTERNATIVE_RULE__ALTERNATVES);
+    createEReference(alternativeRuleEClass, ALTERNATIVE_RULE__ALTERNATIVES);
 
     videoSeqEClass = createEClass(VIDEO_SEQ);
     createEAttribute(videoSeqEClass, VIDEO_SEQ__ID);
@@ -455,7 +455,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 
     initEClass(alternativeRuleEClass, AlternativeRule.class, "AlternativeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAlternativeRule_Id(), ecorePackage.getEString(), "id", null, 0, 1, AlternativeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAlternativeRule_Alternatves(), this.getVideoSeq(), null, "alternatves", null, 0, -1, AlternativeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAlternativeRule_Alternatives(), this.getVideoSeq(), null, "alternatives", null, 0, -1, AlternativeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(videoSeqEClass, VideoSeq.class, "VideoSeq", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVideoSeq_Id(), ecorePackage.getEString(), "id", null, 0, 1, VideoSeq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

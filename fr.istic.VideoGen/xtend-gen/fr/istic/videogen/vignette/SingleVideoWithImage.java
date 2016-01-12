@@ -9,8 +9,11 @@ public class SingleVideoWithImage implements VideoWithImage {
   
   public EnumTypeVideo type;
   
-  public SingleVideoWithImage(final String image, final EnumTypeVideo enumType) {
+  public int ident;
+  
+  public SingleVideoWithImage(final String image, final EnumTypeVideo enumType, final int pIdent) {
     this.name = image;
     this.type = enumType;
+    this.ident = pIdent;
   }
 }

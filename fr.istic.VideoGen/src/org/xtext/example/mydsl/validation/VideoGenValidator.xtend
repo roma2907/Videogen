@@ -3,13 +3,17 @@
  */
 package org.xtext.example.mydsl.validation
 
-import org.xtext.example.mydsl.videoGen.AlternativeRule
-import org.eclipse.xtext.validation.Check
-import org.xtext.example.mydsl.videoGen.VideoSeq
-import org.xtext.example.mydsl.videoGen.VideoGenPackage
-import org.xtext.example.mydsl.videoGen.VideoGen
 import java.io.File
+import java.util.HashSet
+import java.util.Set
+import org.eclipse.xtext.validation.Check
+import org.xtext.example.mydsl.videoGen.AlternativeRule
+import org.xtext.example.mydsl.videoGen.MandatoryRule
+import org.xtext.example.mydsl.videoGen.VideoGen
+import org.xtext.example.mydsl.videoGen.VideoGenPackage
+import org.xtext.example.mydsl.videoGen.VideoSeq
 import org.xtext.example.mydsl.videoGen.VideoSeqMandatory
+import org.xtext.example.mydsl.videoGen.OptionnalRule
 
 //import org.eclipse.xtext.validation.Check
 
@@ -34,11 +38,11 @@ class VideoGenValidator extends AbstractVideoGenValidator {
 	@Check
 	def probabilityAlternativeInferiorOrEgalACent(AlternativeRule alternative){
 		//somme des probabilités de chaque alternative
-		val probaAlternative= alternative.alternatves.filter(VideoSeq).fold(0)[i1,VideoSeq o |
+		val probaAlternative= alternative.alternatives.filter(VideoSeq).fold(0)[i1,VideoSeq o |
 					i1 + o.proprobabilitePercent	
 		]
 		if(probaAlternative > 100){
-			error("La somme des probailités d'une alternative ne peut pas être supérieur à 100.",alternative.eClass().getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES))
+			error("La somme des probailités d'une alternative ne peut pas être supérieur à 100.",alternative.eClass().getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES))
 		}
 	}
 	
@@ -56,6 +60,39 @@ class VideoGenValidator extends AbstractVideoGenValidator {
 		if(!file.exists || file.isDirectory){
 			error("L'url ne correspond pas à un fichier.",videoSeq.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ_MANDATORY__URL))	
 		}
+	}
+	
+	@Check
+	def verifyIdentifiantNotAlreadyExist(VideoGen videogen){
+		val Set<String> set = new HashSet<String>();
+		videogen.videos.forEach[video|
+			if(video instanceof MandatoryRule ){
+				if(video.seq.id!="" && set.contains(video.seq.id)){
+						error("L'identifiant de la video existe déjà.",video.seq.eClass.getEStructuralFeature(VideoGenPackage.VIDEO))
+				}else{
+					set.add(video.seq.id);
+				}
+			}else if (video instanceof OptionnalRule){
+				if(video.seq.id!="" && set.contains(video.seq.id)){
+						error("L'identifiant de la video existe déjà.",video.seq.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ))
+				}else{
+					set.add(video.seq.id);
+				}
+			}else if (video instanceof AlternativeRule){
+				if(video.id!="" && set.contains(video.id)){
+						error("L'identifiant de la video existe déjà.",video.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ))
+				}else{
+					set.add(video.id);
+				}
+				video.alternatives.forEach[alter|
+					if(alter.id!="" && set.contains(alter.id)){
+						error("L'identifiant de la video existe déjà.",alter.eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ))
+					}else{
+						set.add(alter.id);
+					}
+				]
+			}
+		]
 	}
 	
 }

@@ -3,8 +3,12 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -13,6 +17,10 @@ import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.mydsl.validation.AbstractVideoGenValidator;
 import org.xtext.example.mydsl.videoGen.AlternativeRule;
+import org.xtext.example.mydsl.videoGen.MandatoryRule;
+import org.xtext.example.mydsl.videoGen.OptionnalRule;
+import org.xtext.example.mydsl.videoGen.Video;
+import org.xtext.example.mydsl.videoGen.VideoGen;
 import org.xtext.example.mydsl.videoGen.VideoGenPackage;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
@@ -26,8 +34,8 @@ import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
 public class VideoGenValidator extends AbstractVideoGenValidator {
   @Check
   public void probabilityAlternativeInferiorOrEgalACent(final AlternativeRule alternative) {
-    EList<VideoSeq> _alternatves = alternative.getAlternatves();
-    Iterable<VideoSeq> _filter = Iterables.<VideoSeq>filter(_alternatves, VideoSeq.class);
+    EList<VideoSeq> _alternatives = alternative.getAlternatives();
+    Iterable<VideoSeq> _filter = Iterables.<VideoSeq>filter(_alternatives, VideoSeq.class);
     final Function2<Integer, VideoSeq, Integer> _function = (Integer i1, VideoSeq o) -> {
       int _proprobabilitePercent = o.getProprobabilitePercent();
       return Integer.valueOf(((i1).intValue() + _proprobabilitePercent));
@@ -35,7 +43,7 @@ public class VideoGenValidator extends AbstractVideoGenValidator {
     final Integer probaAlternative = IterableExtensions.<VideoSeq, Integer>fold(_filter, Integer.valueOf(0), _function);
     if (((probaAlternative).intValue() > 100)) {
       EClass _eClass = alternative.eClass();
-      EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES);
+      EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES);
       this.error("La somme des probailités d\'une alternative ne peut pas être supérieur à 100.", _eStructuralFeature);
     }
   }
@@ -78,5 +86,106 @@ public class VideoGenValidator extends AbstractVideoGenValidator {
       EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ_MANDATORY__URL);
       this.error("L\'url ne correspond pas à un fichier.", _eStructuralFeature);
     }
+  }
+  
+  @Check
+  public void verifyIdentifiantNotAlreadyExist(final VideoGen videogen) {
+    final Set<String> set = new HashSet<String>();
+    EList<Video> _videos = videogen.getVideos();
+    final Consumer<Video> _function = (Video video) -> {
+      if ((video instanceof MandatoryRule)) {
+        boolean _and = false;
+        VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
+        String _id = _seq.getId();
+        boolean _notEquals = (!Objects.equal(_id, ""));
+        if (!_notEquals) {
+          _and = false;
+        } else {
+          VideoSeqMandatory _seq_1 = ((MandatoryRule)video).getSeq();
+          String _id_1 = _seq_1.getId();
+          boolean _contains = set.contains(_id_1);
+          _and = _contains;
+        }
+        if (_and) {
+          VideoSeqMandatory _seq_2 = ((MandatoryRule)video).getSeq();
+          EClass _eClass = _seq_2.eClass();
+          EStructuralFeature _eStructuralFeature = _eClass.getEStructuralFeature(VideoGenPackage.VIDEO);
+          this.error("L\'identifiant de la video existe déjà.", _eStructuralFeature);
+        } else {
+          VideoSeqMandatory _seq_3 = ((MandatoryRule)video).getSeq();
+          String _id_2 = _seq_3.getId();
+          set.add(_id_2);
+        }
+      } else {
+        if ((video instanceof OptionnalRule)) {
+          boolean _and_1 = false;
+          VideoSeq _seq_4 = ((OptionnalRule)video).getSeq();
+          String _id_3 = _seq_4.getId();
+          boolean _notEquals_1 = (!Objects.equal(_id_3, ""));
+          if (!_notEquals_1) {
+            _and_1 = false;
+          } else {
+            VideoSeq _seq_5 = ((OptionnalRule)video).getSeq();
+            String _id_4 = _seq_5.getId();
+            boolean _contains_1 = set.contains(_id_4);
+            _and_1 = _contains_1;
+          }
+          if (_and_1) {
+            VideoSeq _seq_6 = ((OptionnalRule)video).getSeq();
+            EClass _eClass_1 = _seq_6.eClass();
+            EStructuralFeature _eStructuralFeature_1 = _eClass_1.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ);
+            this.error("L\'identifiant de la video existe déjà.", _eStructuralFeature_1);
+          } else {
+            VideoSeq _seq_7 = ((OptionnalRule)video).getSeq();
+            String _id_5 = _seq_7.getId();
+            set.add(_id_5);
+          }
+        } else {
+          if ((video instanceof AlternativeRule)) {
+            boolean _and_2 = false;
+            String _id_6 = ((AlternativeRule)video).getId();
+            boolean _notEquals_2 = (!Objects.equal(_id_6, ""));
+            if (!_notEquals_2) {
+              _and_2 = false;
+            } else {
+              String _id_7 = ((AlternativeRule)video).getId();
+              boolean _contains_2 = set.contains(_id_7);
+              _and_2 = _contains_2;
+            }
+            if (_and_2) {
+              EClass _eClass_2 = ((AlternativeRule)video).eClass();
+              EStructuralFeature _eStructuralFeature_2 = _eClass_2.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ);
+              this.error("L\'identifiant de la video existe déjà.", _eStructuralFeature_2);
+            } else {
+              String _id_8 = ((AlternativeRule)video).getId();
+              set.add(_id_8);
+            }
+            EList<VideoSeq> _alternatives = ((AlternativeRule)video).getAlternatives();
+            final Consumer<VideoSeq> _function_1 = (VideoSeq alter) -> {
+              boolean _and_3 = false;
+              String _id_9 = alter.getId();
+              boolean _notEquals_3 = (!Objects.equal(_id_9, ""));
+              if (!_notEquals_3) {
+                _and_3 = false;
+              } else {
+                String _id_10 = alter.getId();
+                boolean _contains_3 = set.contains(_id_10);
+                _and_3 = _contains_3;
+              }
+              if (_and_3) {
+                EClass _eClass_3 = alter.eClass();
+                EStructuralFeature _eStructuralFeature_3 = _eClass_3.getEStructuralFeature(VideoGenPackage.VIDEO_SEQ);
+                this.error("L\'identifiant de la video existe déjà.", _eStructuralFeature_3);
+              } else {
+                String _id_11 = alter.getId();
+                set.add(_id_11);
+              }
+            };
+            _alternatives.forEach(_function_1);
+          }
+        }
+      }
+    };
+    _videos.forEach(_function);
   }
 }

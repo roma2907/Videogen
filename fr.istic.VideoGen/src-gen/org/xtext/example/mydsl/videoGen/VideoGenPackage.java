@@ -179,13 +179,13 @@ public interface VideoGenPackage extends EPackage
   int ALTERNATIVE_RULE__ID = VIDEO_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Alternatves</b></em>' containment reference list.
+   * The feature id for the '<em><b>Alternatives</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ALTERNATIVE_RULE__ALTERNATVES = VIDEO_FEATURE_COUNT + 1;
+  int ALTERNATIVE_RULE__ALTERNATIVES = VIDEO_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Alternative Rule</em>' class.
@@ -411,15 +411,15 @@ public interface VideoGenPackage extends EPackage
   EAttribute getAlternativeRule_Id();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatves <em>Alternatves</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatives <em>Alternatives</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Alternatves</em>'.
-   * @see org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatves()
+   * @return the meta object for the containment reference list '<em>Alternatives</em>'.
+   * @see org.xtext.example.mydsl.videoGen.AlternativeRule#getAlternatives()
    * @see #getAlternativeRule()
    * @generated
    */
-  EReference getAlternativeRule_Alternatves();
+  EReference getAlternativeRule_Alternatives();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.VideoSeq <em>Video Seq</em>}'.
@@ -646,12 +646,12 @@ public interface VideoGenPackage extends EPackage
     EAttribute ALTERNATIVE_RULE__ID = eINSTANCE.getAlternativeRule_Id();
 
     /**
-     * The meta object literal for the '<em><b>Alternatves</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Alternatives</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ALTERNATIVE_RULE__ALTERNATVES = eINSTANCE.getAlternativeRule_Alternatves();
+    EReference ALTERNATIVE_RULE__ALTERNATIVES = eINSTANCE.getAlternativeRule_Alternatives();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.VideoSeqImpl <em>Video Seq</em>}' class.

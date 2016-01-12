@@ -30,7 +30,7 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.AlternativeRuleImpl#getId <em>Id</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.videoGen.impl.AlternativeRuleImpl#getAlternatves <em>Alternatves</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.AlternativeRuleImpl#getAlternatives <em>Alternatives</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,14 +58,14 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
   protected String id = ID_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getAlternatves() <em>Alternatves</em>}' containment reference list.
+   * The cached value of the '{@link #getAlternatives() <em>Alternatives</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAlternatves()
+   * @see #getAlternatives()
    * @generated
    * @ordered
    */
-  protected EList<VideoSeq> alternatves;
+  protected EList<VideoSeq> alternatives;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,13 +116,13 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<VideoSeq> getAlternatves()
+  public EList<VideoSeq> getAlternatives()
   {
-    if (alternatves == null)
+    if (alternatives == null)
     {
-      alternatves = new EObjectContainmentEList<VideoSeq>(VideoSeq.class, this, VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES);
+      alternatives = new EObjectContainmentEList<VideoSeq>(VideoSeq.class, this, VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES);
     }
-    return alternatves;
+    return alternatives;
   }
 
   /**
@@ -135,8 +135,8 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
   {
     switch (featureID)
     {
-      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES:
-        return ((InternalEList<?>)getAlternatves()).basicRemove(otherEnd, msgs);
+      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES:
+        return ((InternalEList<?>)getAlternatives()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -153,8 +153,8 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
     {
       case VideoGenPackage.ALTERNATIVE_RULE__ID:
         return getId();
-      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES:
-        return getAlternatves();
+      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES:
+        return getAlternatives();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -173,9 +173,9 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
       case VideoGenPackage.ALTERNATIVE_RULE__ID:
         setId((String)newValue);
         return;
-      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES:
-        getAlternatves().clear();
-        getAlternatves().addAll((Collection<? extends VideoSeq>)newValue);
+      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES:
+        getAlternatives().clear();
+        getAlternatives().addAll((Collection<? extends VideoSeq>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -194,8 +194,8 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
       case VideoGenPackage.ALTERNATIVE_RULE__ID:
         setId(ID_EDEFAULT);
         return;
-      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES:
-        getAlternatves().clear();
+      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES:
+        getAlternatives().clear();
         return;
     }
     super.eUnset(featureID);
@@ -213,8 +213,8 @@ public class AlternativeRuleImpl extends VideoImpl implements AlternativeRule
     {
       case VideoGenPackage.ALTERNATIVE_RULE__ID:
         return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATVES:
-        return alternatves != null && !alternatves.isEmpty();
+      case VideoGenPackage.ALTERNATIVE_RULE__ALTERNATIVES:
+        return alternatives != null && !alternatives.isEmpty();
     }
     return super.eIsSet(featureID);
   }

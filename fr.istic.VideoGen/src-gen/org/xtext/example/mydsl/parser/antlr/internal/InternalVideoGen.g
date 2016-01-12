@@ -293,16 +293,16 @@ ruleAlternativeRule returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAlternativeRuleAccess().getAlternatvesVideoSeqParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getAlternativeRuleAccess().getAlternativesVideoSeqParserRuleCall_3_0()); 
 	    }
-		lv_alternatves_3_0=ruleVideoSeq		{
+		lv_alternatives_3_0=ruleVideoSeq		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAlternativeRuleRule());
 	        }
        		add(
        			$current, 
-       			"alternatves",
-        		lv_alternatves_3_0, 
+       			"alternatives",
+        		lv_alternatives_3_0, 
         		"VideoSeq");
 	        afterParserOrEnumRuleCall();
 	    }

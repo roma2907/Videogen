@@ -58,10 +58,11 @@ class ReadVideogenFile {
 	}
 	
 	private def VideoSeq addAlternativeVideo(AlternativeRule video){
+
 		val mapProbability = newHashMap();
 		var probaRestante = 100;
 		val listAlternativeWithNoProba = newArrayList(); 
-		for(VideoSeq a : video.alternatves){
+		for(VideoSeq a : video.alternatives){
 			if(a.proprobabilitePercent!=0){
 				probaRestante -= a .proprobabilitePercent;
 			}else{
