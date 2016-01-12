@@ -1,5 +1,7 @@
 package fr.istic.videogen.vignette
 
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import org.xtext.example.mydsl.videoGen.AlternativeRule
 import org.xtext.example.mydsl.videoGen.MandatoryRule
 import org.xtext.example.mydsl.videoGen.OptionnalRule
@@ -19,8 +21,17 @@ class GeneratorVignette {
 			"-c",
 			commande
 		]
-		rt.exec(cmd)
-		new SingleVideoWithImage(newImage.substring(newImage.lastIndexOf('/'),newImage.length()),type,j++)
+		var p = rt.exec(cmd)
+		val stdErr = new BufferedReader(
+				new InputStreamReader(p.errorStream)
+				)
+				
+				var c=stdErr.read;
+				while(c!=-1){
+					System.err.print(c as char)
+					c=stdErr.read;
+				}
+		new SingleVideoWithImage(newImage.substring(newImage.lastIndexOf('/')+1,newImage.length()),type,j++)
 	}
 	
 	public def generateVignette(VideoGen videogen){

@@ -4,6 +4,9 @@ import fr.istic.videogen.vignette.AlternativeVideoWithImage;
 import fr.istic.videogen.vignette.EnumTypeVideo;
 import fr.istic.videogen.vignette.SingleVideoWithImage;
 import fr.istic.videogen.vignette.VideoWithImage;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,10 +37,22 @@ public class GeneratorVignette {
         final Runtime rt = Runtime.getRuntime();
         final String commande = ((("ffmpeg -y -i " + url) + " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 ") + newImage);
         final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
-        rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+        Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
+        InputStream _errorStream = p.getErrorStream();
+        InputStreamReader _inputStreamReader = new InputStreamReader(_errorStream);
+        final BufferedReader stdErr = new BufferedReader(_inputStreamReader);
+        int c = stdErr.read();
+        while ((c != (-1))) {
+          {
+            System.err.print(((char) c));
+            int _read = stdErr.read();
+            c = _read;
+          }
+        }
         int _lastIndexOf_1 = newImage.lastIndexOf("/");
+        int _plus = (_lastIndexOf_1 + 1);
         int _length = newImage.length();
-        String _substring_1 = newImage.substring(_lastIndexOf_1, _length);
+        String _substring_1 = newImage.substring(_plus, _length);
         int _plusPlus = this.j++;
         _xblockexpression = new SingleVideoWithImage(_substring_1, type, _plusPlus);
       }
