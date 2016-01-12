@@ -2,8 +2,8 @@
 
 <div ng-controller="VignetteController">
 <div class="col-md-3 col-sm-4 col-xs-6"
-     ng-repeat="image in imageURLs">
-    <img src={{image}}
+     ng-repeat="vignette in vignettes">
+    <img src={{vignette.url}}
          ng-click="selected_images[image] = {selected: !selected_images[image].selected }"
          class="img-responsive"
          ng-class="{ 'selected-image': selected_images[image].selected }"
