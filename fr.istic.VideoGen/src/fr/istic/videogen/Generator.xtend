@@ -5,21 +5,15 @@ import fr.istic.videogen.playlistFormat.PlayListFFMPEG
 import fr.istic.videogen.playlistFormat.PlayListM3U
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT
 import fr.istic.videogen.playlistFormat.TypeGenerator
-import fr.istic.videogen.vignette.AlternativeVideoWithImage
-import fr.istic.videogen.vignette.EnumTypeVideo
-import fr.istic.videogen.vignette.SingleVideoWithImage
 import fr.istic.videogen.vignette.VideoWithImage
 import java.net.URL
 import java.util.List
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.xtext.example.mydsl.videoGen.AlternativeRule
-import org.xtext.example.mydsl.videoGen.MandatoryRule
-import org.xtext.example.mydsl.videoGen.OptionnalRule
 import org.xtext.example.mydsl.videoGen.VideoGen
 import playlist.PlayList
-import org.xtext.example.mydsl.videoGen.Video
+import fr.istic.videogen.vignette.GeneratorVignette
 
 class Generator {
 	
@@ -36,43 +30,10 @@ class Generator {
 	 */
 	def static List<VideoWithImage> createVignette(URL url){
 		var videogen = loadVideoGen(URI.createURI(url.file));
-		val list = newArrayList
-		var int i;
-		for( i=0;i<videogen.videos.length();i++){
-			var video = videogen.videos.get(i)
-			if(video instanceof MandatoryRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.MANDATORY,i))
-			}else if(video instanceof OptionnalRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.OPTIONNAL,i))
-			}else if(video instanceof AlternativeRule){
-				list.add(createImageAlternative(video,i))
-			}
-		}
-		list
+		val generator = new GeneratorVignette;
+		generator.generateVignette(videogen)
 	}
 	
-	private static def createImageAlternative(AlternativeRule alternative,int i){
-		val AlternativeVideoWithImage alternativeVideoWithImage= new AlternativeVideoWithImage
-		alternative.alternatives.forEach[alter |
-			alternativeVideoWithImage.videos.add(new SingleVideoWithImage(createImage(alter.url),null,i))
-		]
-		alternativeVideoWithImage.type = EnumTypeVideo.ALTERNATIVE
-		alternativeVideoWithImage
-	} 
-	
-	private static def createImage(String url){
-		val newImage = url.substring(0,url.lastIndexOf('.'))+".jpg"
-		val rt = Runtime::runtime
-		val commande = "ffmpeg -y -i "+url+" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 "+newImage
-	
-		val cmd = #[
-			"/bin/bash",
-			"-c",
-			commande
-		]
-		rt.exec(cmd)
-		newImage.substring(newImage.lastIndexOf('/'),newImage.length())
-	}
 	
 	private static def GeneratorFile createGenerator(TypeGenerator type,PlayList playlist,String fileOut){
 		switch(type){

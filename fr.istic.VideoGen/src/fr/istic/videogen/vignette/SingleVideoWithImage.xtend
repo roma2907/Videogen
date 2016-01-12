@@ -12,4 +12,5 @@ class SingleVideoWithImage implements VideoWithImage {
 		type = enumType;
 		ident=pIdent;
 	}
+	
 }
