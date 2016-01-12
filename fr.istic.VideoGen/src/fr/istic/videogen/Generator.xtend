@@ -5,6 +5,10 @@ import fr.istic.videogen.playlistFormat.PlayListFFMPEG
 import fr.istic.videogen.playlistFormat.PlayListM3U
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT
 import fr.istic.videogen.playlistFormat.TypeGenerator
+import fr.istic.videogen.vignette.AlternativeVideoWithImage
+import fr.istic.videogen.vignette.EnumTypeVideo
+import fr.istic.videogen.vignette.SingleVideoWithImage
+import fr.istic.videogen.vignette.VideoWithImage
 import java.net.URL
 import java.util.List
 import org.eclipse.emf.common.util.URI
@@ -34,9 +38,9 @@ class Generator {
 		val list = newArrayList
 		videogen.videos.forEach[video |
 			if(video instanceof MandatoryRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),MandatoryRule))
+				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.MANDATORY))
 			}else if(video instanceof OptionnalRule){
-				list.add(new SingleVideoWithImage(createImage(video.seq.url),OptionnalRule))
+				list.add(new SingleVideoWithImage(createImage(video.seq.url),EnumTypeVideo.OPTIONNAL))
 			}else if(video instanceof AlternativeRule){
 				list.add(createImageAlternative(video))
 			}
@@ -49,7 +53,7 @@ class Generator {
 		alternative.alternatves.forEach[alter |
 			alternativeVideoWithImage.videos.add(new SingleVideoWithImage(createImage(alter.url),null))
 		]
-		alternativeVideoWithImage.type = AlternativeRule
+		alternativeVideoWithImage.type = EnumTypeVideo.ALTERNATIVE
 		alternativeVideoWithImage
 	} 
 	
@@ -64,7 +68,7 @@ class Generator {
 			commande
 		]
 		val p=rt.exec(cmd)
-		newImage
+		newImage.substring(newImage.lastIndexOf('/'),newImage.length())
 	}
 	
 	private static def GeneratorFile createGenerator(TypeGenerator type,PlayList playlist,String fileOut){

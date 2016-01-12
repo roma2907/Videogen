@@ -1,14 +1,15 @@
 package fr.istic.videogen;
 
-import fr.istic.videogen.AlternativeVideoWithImage;
 import fr.istic.videogen.ReadVideogenFile;
-import fr.istic.videogen.SingleVideoWithImage;
-import fr.istic.videogen.VideoWithImage;
 import fr.istic.videogen.playlistFormat.GeneratorFile;
 import fr.istic.videogen.playlistFormat.PlayListFFMPEG;
 import fr.istic.videogen.playlistFormat.PlayListM3U;
 import fr.istic.videogen.playlistFormat.PlayListM3UEXT;
 import fr.istic.videogen.playlistFormat.TypeGenerator;
+import fr.istic.videogen.vignette.AlternativeVideoWithImage;
+import fr.istic.videogen.vignette.EnumTypeVideo;
+import fr.istic.videogen.vignette.SingleVideoWithImage;
+import fr.istic.videogen.vignette.VideoWithImage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,14 +65,14 @@ public class Generator {
           VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
           String _url = _seq.getUrl();
           String _createImage = Generator.createImage(_url);
-          SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, MandatoryRule.class);
+          SingleVideoWithImage _singleVideoWithImage = new SingleVideoWithImage(_createImage, EnumTypeVideo.MANDATORY);
           list.add(_singleVideoWithImage);
         } else {
           if ((video instanceof OptionnalRule)) {
             VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
             String _url_1 = _seq_1.getUrl();
             String _createImage_1 = Generator.createImage(_url_1);
-            SingleVideoWithImage _singleVideoWithImage_1 = new SingleVideoWithImage(_createImage_1, OptionnalRule.class);
+            SingleVideoWithImage _singleVideoWithImage_1 = new SingleVideoWithImage(_createImage_1, EnumTypeVideo.OPTIONNAL);
             list.add(_singleVideoWithImage_1);
           } else {
             if ((video instanceof AlternativeRule)) {
@@ -99,7 +100,7 @@ public class Generator {
         alternativeVideoWithImage.videos.add(_singleVideoWithImage);
       };
       _alternatves.forEach(_function);
-      alternativeVideoWithImage.type = AlternativeRule.class;
+      alternativeVideoWithImage.type = EnumTypeVideo.ALTERNATIVE;
       _xblockexpression = alternativeVideoWithImage;
     }
     return _xblockexpression;
@@ -116,7 +117,9 @@ public class Generator {
         final String commande = ((("ffmpeg -y -i " + url) + " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 ") + newImage);
         final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
         final Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
-        _xblockexpression = newImage;
+        int _lastIndexOf_1 = newImage.lastIndexOf("/");
+        int _length = newImage.length();
+        _xblockexpression = newImage.substring(_lastIndexOf_1, _length);
       }
       return _xblockexpression;
     } catch (Throwable _e) {

@@ -1,7 +1,7 @@
 package fr.istic.videogen;
 
 import fr.istic.videogen.Generator;
-import fr.istic.videogen.VideoWithImage;
+import fr.istic.videogen.vignette.VideoWithImage;
 import java.net.URL;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
