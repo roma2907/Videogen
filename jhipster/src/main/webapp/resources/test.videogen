@@ -1,4 +1,22 @@
 VideoGen{
-	optional videoseq v1 "src/main/webapp/resources/video1.mp4" description : "description1" probability:70
-	optional videoseq v1 "src/main/webapp/resources/video2.mp4" description : "description1" probability:70
+
+
+    mandatory videoseq v1 "src/main/webapp/resources/intro1.mp4" description : "intro LOTR"
+
+    optional videoseq v1 "src/main/webapp/resources/optalt1.mp4" description : "description1" probability:70
+    optional videoseq v1 "src/main/webapp/resources/optalt2.mp4" description : "description1" probability:70
+
+	alternatives num1 {
+		videoseq v1 "src/main/webapp/resources/optalt3.mp4"
+		videoseq v1 "src/main/webapp/resources/optalt4.mp4"
+		videoseq v1 "src/main/webapp/resources/optalt5.mp4"
+	}
+
+	optional videoseq v1 "src/main/webapp/resources/end1.mp4" description : "description1" probability:7
+
+    mandatory videoseq v1 "src/main/webapp/resources/end2.mp4" description : "end LOTR"
+
+
+
+
 }

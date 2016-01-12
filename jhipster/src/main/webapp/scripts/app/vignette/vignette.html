@@ -1,16 +1,30 @@
 
 
 <div ng-controller="VignetteController">
+
     <p>TOTTO</p>
-    {{vignettes}}
-<div class="col-md-3 col-sm-4 col-xs-6"
-     ng-repeat="vignette in vignettes">
+    <ul>
+<li ng-repeat="vignette in vignettes">
     <img src="http://localhost:8080/resources/{{vignette.name}}"
-         ng-click="selected_images[image] = {selected: !selected_images[image].selected }"
          class="img-responsive"
-         ng-class="{ 'selected-image': selected_images[vignette].selected }"
+         ng-click="selectItem(vignette)"
+
+         ng-class="{'fa fa-check':isSelected(vignette)}"
          style="max-height: 120px;" alt="" title="">
-</div>
+
+    <div ng-if="vignette.videos">
+        <div ng-repeat="altern in vignette.videos">
+            <img src="http://localhost:8080/resources/{{altern.name}}"
+                 ng-click="selectItem(altern)"
+                 ng-class="{'fa fa-check':isSelected(altern)}"
+                 style="max-height: 120px;" alt="" title="">
+        </div>
+
+
+    </div>
+
+</li>
+    </ul>
 <pre>{{selected_images | json}}</pre>
 </div>
 
