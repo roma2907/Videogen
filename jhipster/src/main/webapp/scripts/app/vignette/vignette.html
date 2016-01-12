@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html ng-app="generatorVideoApp">
 
-<head>
-    <meta charset="utf-8" />
-    <script>
-        document.write('<base href="' + document.location + '" />');
-    </script>
-</head>
 
-<body ng-controller="VignetteController">
+<div ng-controller="VignetteController">
 <div class="col-md-3 col-sm-4 col-xs-6"
      ng-repeat="image in imageURLs">
     <img src={{image}}
@@ -18,6 +10,5 @@
          style="max-height: 120px;" alt="" title="">
 </div>
 <pre>{{selected_images | json}}</pre>
-</body>
+</div>
 
-</html>

@@ -1,19 +1,18 @@
 package fr.istic.videogen.web.rest;
 
 import java.io.FileNotFoundException;
-import java.net.URI;
 import java.net.URL;
+import java.util.List;
 
-import javax.servlet.ServletContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.istic.videogen.Generator;
+import fr.istic.videogen.VideoWithImage;
 import fr.istic.videogen.playlistFormat.TypeGenerator;
 
 
@@ -30,4 +29,11 @@ public class VideoRessource {
 			System.out.println(file);
 			return "{\"url\":\""+file+"\"}";
 	    }
+	
+	@RequestMapping(value="/vignettes",method=RequestMethod.GET)
+	public @ResponseBody List<VideoWithImage> getVignettes() throws FileNotFoundException{
+		URL url = ResourceUtils.getURL("src/main/webapp/resources/test.videogen");
+		return Generator.createVignette(url);
+		
+	}
 }
