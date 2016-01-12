@@ -29,11 +29,12 @@ public class VideoRessource {
 			System.out.println(file);
 			return "{\"url\":\""+file+"\"}";
 	    }
-	
+
 	@RequestMapping(value="/vignettes",method=RequestMethod.GET)
 	public @ResponseBody List<VideoWithImage> getVignettes() throws FileNotFoundException{
 		URL url = ResourceUtils.getURL("src/main/webapp/resources/test.videogen");
+
 		return Generator.createVignette(url);
-		
+
 	}
 }
