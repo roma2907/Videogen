@@ -8,10 +8,7 @@ angular.module('generatorVideoApp')
                 $scope.vignettes = v;
     	    });
 
-        $scope.items = [
-            {imageUrl: '/app/img/item1.jpg'},
-            {imageUrl: '/app/img/item2.jpg'}
-        ];
+        $scope.my_items = [];
 
 
         postVideo = function(data){
@@ -29,9 +26,35 @@ angular.module('generatorVideoApp')
 
         };
 
+        $scope.removeItem = function(array,item){
+            if(array.indexOf(item.ident) !== -1){
+                array.splice(array.indexOf(item.ident), 1);
+            }
+        };
+
         $scope.selectItem = function(item){
             console.log(item.ident);
+            if($scope.my_items.indexOf(item.ident) !== -1){
+                $scope.my_items.splice($scope.my_items.indexOf(item.ident), 1);
+            }
+            else{
+                $scope.my_items.push(item.ident);
+            }
+
             $scope.selectedItem = item.ident;
+        };
+
+        $scope.selectItemAltern = function(array,item){
+            console.log(array);
+            array.forEach(function(data)
+            {
+
+                if($scope.my_items.indexOf(data.ident) !== -1) {
+                    $scope.my_items.splice($scope.my_items.indexOf(data.ident), 1);
+                }
+
+            });
+            $scope.my_items.push(item.ident);
 
 
 

@@ -2,30 +2,34 @@
 
 <div ng-controller="VignetteController">
 
-    <p>TOTTO</p>
+    <p>Choix : Alternatif et Optionnel</p>
     <ul>
-<li ng-repeat="vignette in vignettes">
+<li style="list-style-type: none;" ng-repeat="vignette in vignettes">
+    <div ng-if="vignette.name && vignette.type=='OPTIONNAL'">
     <img src="http://localhost:8080/resources/{{vignette.name}}"
          class="img-responsive"
          ng-click="selectItem(vignette);"
 
          ng-class="{'fa fa-check':isSelected(vignette)}"
-         style="max-height: 120px;" alt="" title="">
-
-    <div ng-if="vignette.videos">
-        <div ng-repeat="altern in vignette.videos">
+         style="width:150px; height: 120px;margin:auto;" alt="" title="">
+    </div>
+    <div ng-if="vignette.name && vignette.type=='MANDATORY'">
+        <img src="http://localhost:8080/resources/{{vignette.name}}"
+             class="img-responsive"
+             style="width:150px; height: 120px;margin:auto;" alt="" title="">
+    </div>
+    <div ng-if="vignette.videos" style="text-align: center;">
+        <div style="display: inline-block" ng-repeat="altern in vignette.videos">
             <img src="http://localhost:8080/resources/{{altern.name}}"
-                 ng-click="selectItem(altern)"
-                 ng-class="{'fa fa-check':isSelected(altern)}"
-                 style="max-height: 120px;" alt="" title="">
+                 ng-click="selectItemAltern(vignette.videos,altern)"
+                 ng-class="{'fa fa-check':isSelectedAltern(altern)}"
+                 style="width:150px; height: 120px;margin:auto;" alt="" title="">
         </div>
-
-
     </div>
 
 </li>
     </ul>
-<pre>{{selected_images | json}}</pre>
+<pre>Vos choix : {{my_items | json}}</pre>
 
 
     <button ng-click="generateSelectedVideo()">Générer une video</button>
