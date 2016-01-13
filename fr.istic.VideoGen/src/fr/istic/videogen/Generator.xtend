@@ -25,6 +25,14 @@ class Generator {
 		generator.generateFile
 	}
 	
+	def static String createVideo(URL url,List<Integer> identifiantsVideo,TypeGenerator type,String fileOut) {
+	 	
+		var videogen = loadVideoGen(URI.createURI(url.file));
+		var readFile = new ReadVideogenFile(videogen);
+		val generator = createGenerator(type,readFile.apply(identifiantsVideo),fileOut);
+		generator.generateFile
+	}
+	
 	/**
 	 * Url du fichier videogen
 	 */

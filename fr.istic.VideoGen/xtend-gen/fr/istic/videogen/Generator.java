@@ -36,6 +36,20 @@ public class Generator {
     return _xblockexpression;
   }
   
+  public static String createVideo(final URL url, final List<Integer> identifiantsVideo, final TypeGenerator type, final String fileOut) {
+    String _xblockexpression = null;
+    {
+      String _file = url.getFile();
+      URI _createURI = URI.createURI(_file);
+      VideoGen videogen = Generator.loadVideoGen(_createURI);
+      ReadVideogenFile readFile = new ReadVideogenFile(videogen);
+      PlayList _apply = readFile.apply(identifiantsVideo);
+      final GeneratorFile generator = Generator.createGenerator(type, _apply, fileOut);
+      _xblockexpression = generator.generateFile();
+    }
+    return _xblockexpression;
+  }
+  
   /**
    * Url du fichier videogen
    */

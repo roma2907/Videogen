@@ -14,6 +14,8 @@ import java.io.File
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.IOException
+import java.util.List
+import java.util.Collections
 
 class ReadVideogenFile {
 	
@@ -22,6 +24,36 @@ class ReadVideogenFile {
 	
 	new(VideoGen pVideogen) {
 		this.videogen = pVideogen;	
+	}
+	
+	def apply(List<Integer> listIdentifiants){
+		val factory = PlayListFactory.eINSTANCE;
+		val playList = factory.createPlayList;
+		Collections.sort(listIdentifiants)
+		var i=0;
+		//dernière valeur à chercher
+		var max=listIdentifiants.get(listIdentifiants.size - 1)
+		while(i<max){
+			var video = videogen.videos.get(i)
+			if(listIdentifiants.contains(i)){
+				if(video instanceof MandatoryRule){
+					playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
+				}else if(video instanceof OptionnalRule){
+					playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
+				}
+			}
+			if(video instanceof AlternativeRule){
+				var a=0;
+				for(a=0;a<video.alternatives.size;a++){
+					if(listIdentifiants.contains(i)){
+						playList.videos.add(createVideoSeqToPlayList(video.alternatives.get(a),factory))
+					}				
+					i++		
+				}
+			}
+			i++
+		}
+		playList
 	}
 	
 	def apply(){

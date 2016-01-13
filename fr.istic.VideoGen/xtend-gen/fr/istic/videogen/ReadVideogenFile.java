@@ -37,6 +37,60 @@ public class ReadVideogenFile {
     this.videogen = pVideogen;
   }
   
+  public PlayList apply(final List<Integer> listIdentifiants) {
+    PlayList _xblockexpression = null;
+    {
+      final PlayListFactory factory = PlayListFactory.eINSTANCE;
+      final PlayList playList = factory.createPlayList();
+      Collections.<Integer>sort(listIdentifiants);
+      int i = 0;
+      int _size = listIdentifiants.size();
+      int _minus = (_size - 1);
+      Integer max = listIdentifiants.get(_minus);
+      while ((i < (max).intValue())) {
+        {
+          EList<Video> _videos = this.videogen.getVideos();
+          Video video = _videos.get(i);
+          boolean _contains = listIdentifiants.contains(Integer.valueOf(i));
+          if (_contains) {
+            if ((video instanceof MandatoryRule)) {
+              EList<playlist.Video> _videos_1 = playList.getVideos();
+              VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
+              playlist.Video _createVideoSeqToPlayList = this.createVideoSeqToPlayList(_seq, factory);
+              _videos_1.add(_createVideoSeqToPlayList);
+            } else {
+              if ((video instanceof OptionnalRule)) {
+                EList<playlist.Video> _videos_2 = playList.getVideos();
+                VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
+                playlist.Video _createVideoSeqToPlayList_1 = this.createVideoSeqToPlayList(_seq_1, factory);
+                _videos_2.add(_createVideoSeqToPlayList_1);
+              }
+            }
+          }
+          if ((video instanceof AlternativeRule)) {
+            int a = 0;
+            for (a = 0; (a < ((AlternativeRule)video).getAlternatives().size()); a++) {
+              {
+                boolean _contains_1 = listIdentifiants.contains(Integer.valueOf(i));
+                if (_contains_1) {
+                  EList<playlist.Video> _videos_3 = playList.getVideos();
+                  EList<VideoSeq> _alternatives = ((AlternativeRule)video).getAlternatives();
+                  VideoSeq _get = _alternatives.get(a);
+                  playlist.Video _createVideoSeqToPlayList_2 = this.createVideoSeqToPlayList(_get, factory);
+                  _videos_3.add(_createVideoSeqToPlayList_2);
+                }
+                i++;
+              }
+            }
+          }
+          i++;
+        }
+      }
+      _xblockexpression = playList;
+    }
+    return _xblockexpression;
+  }
+  
   public PlayList apply() {
     PlayList _xblockexpression = null;
     {
