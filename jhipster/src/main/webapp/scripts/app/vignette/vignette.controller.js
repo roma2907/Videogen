@@ -13,7 +13,7 @@ angular.module('generatorVideoApp')
 
         postVideo = function(data){
 
-            $http.get("http://localhost:8080/api/videos/vignettes2",
+            $http.post("http://localhost:8080/api/videos/vignettes",
                 data,
                 {headers: {
                     'Access-Control-Allow-Origin': '*'
