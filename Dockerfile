@@ -11,4 +11,6 @@ RUN apt-get update \
 
 COPY install.sh /var/cache/ffmpeg/install.sh
 RUN bash /var/cache/ffmpeg/install.sh
-CMD  mvn
+
+CMD ["mvn","spring-boot:run"]
+

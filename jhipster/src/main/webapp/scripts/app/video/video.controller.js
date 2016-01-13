@@ -4,12 +4,11 @@ angular.module('generatorVideoApp')
     	$scope.generateVideo=function(){
     	    Video.generate(function(v) {
     	    	
-    	    	$scope.showPlayer=true;
-    	    	$scope.play(v.url.replace("src/main/webapp","http://localhost:8080"));
+    	    	play(v.url.replace("src/main/webapp","http://localhost:8080"));
     	    	
     	    });
     	    
-    	    $scope.play=function(url){
+    	   play=function(url){
     	    	console.log(url);
     	    	flowplayer("PLAYERID", "http://40ansenfete.irisa.fr/assets/flash/flowplayer.swf", {
  	    		   wmode: 'direct',

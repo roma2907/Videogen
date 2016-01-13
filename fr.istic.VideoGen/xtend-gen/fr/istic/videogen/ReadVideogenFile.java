@@ -82,6 +82,7 @@ public class ReadVideogenFile {
                 i++;
               }
             }
+            i--;
           }
           i++;
         }
