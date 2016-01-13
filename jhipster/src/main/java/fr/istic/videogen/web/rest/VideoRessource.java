@@ -37,7 +37,7 @@ public class VideoRessource {
 		URL url = ResourceUtils.getURL("src/main/webapp/resources/test.videogen");
 		return Generator.createVignette(url);
 	}
-	
+
 	@RequestMapping(value="/vignettes",method=RequestMethod.POST)
 	public String createPlayListVignette(@RequestBody List<Integer> lists) throws FileNotFoundException{
 		URL url = ResourceUtils.getURL("src/main/webapp/resources/test.videogen");

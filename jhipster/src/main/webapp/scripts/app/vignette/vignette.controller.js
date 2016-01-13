@@ -13,7 +13,12 @@ angular.module('generatorVideoApp')
 
         postVideo = function(data){
 
-            $http.post("http://localhost:8080/api/videos/vignettes", data)
+            $http.get("http://localhost:8080/api/videos/vignettes2",
+                data,
+                {headers: {
+                    'Access-Control-Allow-Origin': '*'
+                }}
+            )
                 .success(function (data, status, headers, config) {
                     console.log("success");
                     console.log(data);
@@ -68,8 +73,8 @@ angular.module('generatorVideoApp')
         };
 
         $scope.generateSelectedVideo = function(){
-            console.log($scope.selectedItem);
-            postVideo([$scope.selectedItem]);
+            console.log($scope.my_items);
+            postVideo($scope.my_items);
             console.log($scope.myUrl);
 
         };
