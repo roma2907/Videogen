@@ -50,6 +50,7 @@ class ReadVideogenFile {
 					}				
 					i++		
 				}
+				i--
 			}
 			i++
 		}
