@@ -1,7 +1,7 @@
 angular.module('generatorVideoApp')
     .controller('VignetteController', function ($scope,$http, Vignette) {
 
-        console.log($scope.selectedItem);
+        $scope.selectedItem=null;
 
     		Vignette.generate(function(v) {
     			console.log(v);
@@ -52,16 +52,21 @@ angular.module('generatorVideoApp')
 
             });
             $scope.my_items.push(item.ident);
+            $scope.selectedItem = item.ident;
 
 
 
         };
 
         $scope.isSelected = function(item){
-            /*if($scope.selectedItem===null){
-                return false;
+            console.log("isSelected");
+            console.log(item.ident);
+            console.log($scope.my_items);
+
+            if($scope.my_items.indexOf(item.ident) !== -1){
+                return true;
             }
-            return item.imageUrl === $scope.selectedItem.imageUrl;*/
+            return false;
         };
 
         $scope.generateSelectedVideo = function(){

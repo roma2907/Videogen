@@ -1,6 +1,14 @@
 
 
 <div>
+    <style type="text/css">
+
+        .selected-item{
+            border: 2px solid green;
+        }
+
+    </style>
+
 
     <p>Choix : Alternatif et Optionnel</p>
     <ul>
@@ -9,20 +17,21 @@
     <img src="http://localhost:8080/resources/{{vignette.name}}"
          class="img-responsive"
          ng-click="selectItem(vignette);"
-
-         ng-class="{'fa fa-check':isSelected(vignette)}"
+         ng-class="{'selected-item':isSelected(vignette)}"
          style="width:150px; height: 120px;margin:auto;" alt="" title="">
     </div>
     <div ng-if="vignette.name && vignette.type=='MANDATORY'">
         <img src="http://localhost:8080/resources/{{vignette.name}}"
              class="img-responsive"
+             ng-class="{'selected-image':true}"
              style="width:150px; height: 120px;margin:auto;" alt="" title="">
     </div>
     <div ng-if="vignette.videos" style="text-align: center;">
         <div style="display: inline-block" ng-repeat="altern in vignette.videos">
             <img src="http://localhost:8080/resources/{{altern.name}}"
+                 class="img-responsive"
                  ng-click="selectItemAltern(vignette.videos,altern)"
-                 ng-class="{'fa fa-check':isSelectedAltern(altern)}"
+                 ng-class="{'selected-image':isSelected(altern)}"
                  style="width:150px; height: 120px;margin:auto;" alt="" title="">
         </div>
     </div>
