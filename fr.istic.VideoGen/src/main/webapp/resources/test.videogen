@@ -1,3 +1,0 @@
-VideoGen{
-	optional videoseq "src/main/webapp/resources/video1.mp4" description : "description1" probability:70
-}

@@ -44,47 +44,45 @@ public class ReadVideogenFile {
       final PlayList playList = factory.createPlayList();
       Collections.<Integer>sort(listIdentifiants);
       int i = 0;
-      int _size = listIdentifiants.size();
-      int _minus = (_size - 1);
-      Integer max = listIdentifiants.get(_minus);
-      while ((i < (max).intValue())) {
+      int a = 0;
+      while ((a < this.videogen.getVideos().size())) {
         {
           EList<Video> _videos = this.videogen.getVideos();
-          Video video = _videos.get(i);
-          boolean _contains = listIdentifiants.contains(Integer.valueOf(i));
-          if (_contains) {
-            if ((video instanceof MandatoryRule)) {
-              EList<playlist.Video> _videos_1 = playList.getVideos();
-              VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
-              playlist.Video _createVideoSeqToPlayList = this.createVideoSeqToPlayList(_seq, factory);
-              _videos_1.add(_createVideoSeqToPlayList);
-            } else {
-              if ((video instanceof OptionnalRule)) {
+          Video video = _videos.get(a);
+          if ((video instanceof MandatoryRule)) {
+            EList<playlist.Video> _videos_1 = playList.getVideos();
+            VideoSeqMandatory _seq = ((MandatoryRule)video).getSeq();
+            playlist.Video _createVideoSeqToPlayList = this.createVideoSeqToPlayList(_seq, factory);
+            _videos_1.add(_createVideoSeqToPlayList);
+            i++;
+          } else {
+            if ((video instanceof OptionnalRule)) {
+              boolean _contains = listIdentifiants.contains(Integer.valueOf(i));
+              if (_contains) {
                 EList<playlist.Video> _videos_2 = playList.getVideos();
                 VideoSeq _seq_1 = ((OptionnalRule)video).getSeq();
                 playlist.Video _createVideoSeqToPlayList_1 = this.createVideoSeqToPlayList(_seq_1, factory);
                 _videos_2.add(_createVideoSeqToPlayList_1);
               }
-            }
-          }
-          if ((video instanceof AlternativeRule)) {
-            int a = 0;
-            for (a = 0; (a < ((AlternativeRule)video).getAlternatives().size()); a++) {
-              {
-                boolean _contains_1 = listIdentifiants.contains(Integer.valueOf(i));
-                if (_contains_1) {
-                  EList<playlist.Video> _videos_3 = playList.getVideos();
-                  EList<VideoSeq> _alternatives = ((AlternativeRule)video).getAlternatives();
-                  VideoSeq _get = _alternatives.get(a);
-                  playlist.Video _createVideoSeqToPlayList_2 = this.createVideoSeqToPlayList(_get, factory);
-                  _videos_3.add(_createVideoSeqToPlayList_2);
+              i++;
+            } else {
+              if ((video instanceof AlternativeRule)) {
+                EList<VideoSeq> _alternatives = ((AlternativeRule)video).getAlternatives();
+                for (final VideoSeq alter : _alternatives) {
+                  {
+                    boolean _contains_1 = listIdentifiants.contains(Integer.valueOf(i));
+                    if (_contains_1) {
+                      EList<playlist.Video> _videos_3 = playList.getVideos();
+                      playlist.Video _createVideoSeqToPlayList_2 = this.createVideoSeqToPlayList(alter, factory);
+                      _videos_3.add(_createVideoSeqToPlayList_2);
+                    }
+                    i++;
+                  }
                 }
-                i++;
               }
             }
-            i--;
           }
-          i++;
+          a++;
         }
       }
       _xblockexpression = playList;
@@ -217,6 +215,10 @@ public class ReadVideogenFile {
       int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
       video.setDuration(_durationByFfmpeg);
     }
+    InputOutput.<String>println("//////////////////");
+    String _url_2 = video.getUrl();
+    InputOutput.<String>println(_url_2);
+    InputOutput.<String>println("//////////////////");
     return video;
   }
   
@@ -275,6 +277,10 @@ public class ReadVideogenFile {
         int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
         video.setDuration(_durationByFfmpeg);
       }
+      InputOutput.<String>println("//////////////////");
+      String _url_2 = video.getUrl();
+      InputOutput.<String>println(_url_2);
+      InputOutput.<String>println("//////////////////");
       _xblockexpression = video;
     }
     return _xblockexpression;

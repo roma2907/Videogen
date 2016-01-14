@@ -31,28 +31,27 @@ class ReadVideogenFile {
 		val playList = factory.createPlayList;
 		Collections.sort(listIdentifiants)
 		var i=0;
-		//dernière valeur à chercher
-		var max=listIdentifiants.get(listIdentifiants.size - 1)
-		while(i<max){
-			var video = videogen.videos.get(i)
-			if(listIdentifiants.contains(i)){
-				if(video instanceof MandatoryRule){
-					playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
-				}else if(video instanceof OptionnalRule){
+		var a=0;
+		while(a<videogen.videos.size()){
+			var video = videogen.videos.get(a)
+			if(video instanceof MandatoryRule){
+				playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
+				i++;
+			}else if(video instanceof OptionnalRule){
+				if(listIdentifiants.contains(i)){
 					playList.videos.add(createVideoSeqToPlayList(video.seq,factory))
 				}
+				i++;
 			}
-			if(video instanceof AlternativeRule){
-				var a=0;
-				for(a=0;a<video.alternatives.size;a++){
+			else if(video instanceof AlternativeRule){
+				for(VideoSeq alter :video.alternatives){
 					if(listIdentifiants.contains(i)){
-						playList.videos.add(createVideoSeqToPlayList(video.alternatives.get(a),factory))
+						playList.videos.add(createVideoSeqToPlayList(alter,factory))
 					}				
-					i++		
+					i++;
 				}
-				i--
 			}
-			i++
+			a++;
 		}
 		playList
 	}
@@ -135,6 +134,10 @@ class ReadVideogenFile {
 			else{
 				video.duration = getDurationByFfmpeg(video.url)
 			}
+			
+			println("//////////////////")
+			println(video.url)
+			println("//////////////////")
 			return video
 	}
 	
@@ -180,6 +183,9 @@ class ReadVideogenFile {
 			else{
 				video.duration = getDurationByFfmpeg(video.url)
 			}
+			println("//////////////////")
+			println(video.url)
+			println("//////////////////")
 			video
 	}
 }
