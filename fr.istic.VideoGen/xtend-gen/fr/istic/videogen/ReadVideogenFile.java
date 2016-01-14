@@ -37,6 +37,9 @@ public class ReadVideogenFile {
     this.videogen = pVideogen;
   }
   
+  /**
+   * Création de la playlist après que l'utilisateur est sélectionné certaine video
+   */
   public PlayList apply(final List<Integer> listIdentifiants) {
     PlayList _xblockexpression = null;
     {

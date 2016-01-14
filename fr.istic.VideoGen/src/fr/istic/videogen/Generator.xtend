@@ -17,6 +17,10 @@ import fr.istic.videogen.vignette.GeneratorVignette
 
 class Generator {
 	
+	//Création d'une video aleatoire:
+	// Création de la playlist
+	// Création du fichier du type voulu (ffmpeg,m3u,m3u8)
+	// Retourne le chemin où se trouve le fichier créé
 	 def static String createVideo(URL url,TypeGenerator type,String fileOut) {
 	 	
 		var videogen = loadVideoGen(URI.createURI(url.file));
@@ -25,6 +29,11 @@ class Generator {
 		generator.generateFile
 	}
 	
+	
+	//Création d'une video à partir de séquence choisie par l'utilisateur
+	// Création de la playlist
+	// Création du fichier du type voulu (ffmpeg,m3u,m3u8)
+	// Retourne le chemin où se trouve le fichier créé
 	def static String createVideo(URL url,List<Integer> identifiantsVideo,TypeGenerator type,String fileOut) {
 	 	
 		var videogen = loadVideoGen(URI.createURI(url.file));
@@ -33,9 +42,7 @@ class Generator {
 		generator.generateFile
 	}
 	
-	/**
-	 * Url du fichier videogen
-	 */
+	//Récupération de l'ensemble des vignettes de videogen, assignation d'un identifiant à chauqe video
 	def static List<VideoWithImage> createVignette(URL url){
 		var videogen = loadVideoGen(URI.createURI(url.file));
 		val generator = new GeneratorVignette;

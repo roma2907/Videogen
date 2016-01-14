@@ -50,9 +50,6 @@ public class Generator {
     return _xblockexpression;
   }
   
-  /**
-   * Url du fichier videogen
-   */
   public static List<VideoWithImage> createVignette(final URL url) {
     ArrayList<VideoWithImage> _xblockexpression = null;
     {

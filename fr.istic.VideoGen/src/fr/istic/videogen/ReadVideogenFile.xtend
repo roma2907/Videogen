@@ -26,12 +26,16 @@ class ReadVideogenFile {
 		this.videogen = pVideogen;	
 	}
 	
+	/**
+	 * Création de la playlist après que l'utilisateur est sélectionné certaine video
+	 */
 	def apply(List<Integer> listIdentifiants){
 		val factory = PlayListFactory.eINSTANCE;
 		val playList = factory.createPlayList;
 		Collections.sort(listIdentifiants)
 		var i=0;
 		var a=0;
+		//parcours de toutes les videos
 		while(a<videogen.videos.size()){
 			var video = videogen.videos.get(a)
 			if(video instanceof MandatoryRule){
