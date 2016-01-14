@@ -1,5 +1,9 @@
 #EXTM3U
 #EXT-X-DISCONTINUITY
+<<<<<<< HEAD
+#EXTINF: 16 null
+/resources/optalt5.ts
+=======
 #EXTINF: 16 intro LOTR
 /resources/intro1.ts
 #EXT-X-DISCONTINUITY
