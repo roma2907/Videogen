@@ -9,6 +9,17 @@ angular.module('generatorVideoApp')
                         data = angular.fromJson(data);
                         return data;
                     }
+                },
+                'genVignettes':{
+                    method: 'POST',
+                    transformResponse: function (data) {
+                        data = angular.fromJson(data);
+                        return data;
+                    }
+
                 }
             });
         });
+
+
+

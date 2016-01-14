@@ -13,21 +13,13 @@ angular.module('generatorVideoApp')
 
         postVideo = function(data){
 
-            $http.post("http://localhost:8080/api/videos/vignettes",
-                data,
-                {headers: {
-                    'Access-Control-Allow-Origin': '*'
-                }}
-            )
-                .success(function (data, status, headers, config) {
-                    console.log("success");
-                    console.log(data);
-                    $scope.myUrl = data;
-                    play($scope.myUrl.url.replace("src/main/webapp","http://localhost:8080"));
+             Vignette.genVignettes(data, function(res){
 
-                })
-                .error(function (data, status, header, config) {
-                });
+                console.log("success");
+                console.log(res);
+                $scope.myUrl = res;
+                play($scope.myUrl.url.replace("src/main/webapp","http://localhost:8080"));
+            });
 
         };
 
