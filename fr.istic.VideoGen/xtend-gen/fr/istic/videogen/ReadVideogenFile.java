@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.videoGen.AlternativeRule;
 import org.xtext.example.mydsl.videoGen.MandatoryRule;
 import org.xtext.example.mydsl.videoGen.OptionnalRule;
@@ -38,7 +37,7 @@ public class ReadVideogenFile {
   }
   
   /**
-   * Création de la playlist après que l'utilisateur est sélectionné certaine video
+   * Création de la playlist, à partir des vignettes sélectionnés par l'utilisateur
    */
   public PlayList apply(final List<Integer> listIdentifiants) {
     PlayList _xblockexpression = null;
@@ -93,6 +92,9 @@ public class ReadVideogenFile {
     return _xblockexpression;
   }
   
+  /**
+   * Création de la playlist, à partir du fichier videogen, en prenant en compte les probabilités et l'aléatoire
+   */
   public PlayList apply() {
     PlayList _xblockexpression = null;
     {
@@ -125,17 +127,16 @@ public class ReadVideogenFile {
         }
       };
       _videos.forEach(_function);
-      EList<playlist.Video> _videos_1 = playList.getVideos();
-      final Consumer<playlist.Video> _function_1 = (playlist.Video f) -> {
-        String _url = f.getUrl();
-        InputOutput.<String>println(_url);
-      };
-      _videos_1.forEach(_function_1);
       _xblockexpression = playList;
     }
     return _xblockexpression;
   }
   
+  /**
+   * Foction qui va regarder les probabilités de la vidéos optionnel,
+   *  et qui retourne true si le nombre tiré aléatoirement est inférieur au probabilité
+   *  le fait de retourner true indique que l'on peut ajouter la vidéo à la playlist
+   */
   private boolean canAddOptionnalVideo(final OptionnalRule video) {
     boolean _xifexpression = false;
     VideoSeq _seq = video.getSeq();
@@ -152,6 +153,10 @@ public class ReadVideogenFile {
     return _xifexpression;
   }
   
+  /**
+   * Méthode qui va regarder une video alternative, et qui va retourner une des VideoSeq en fonction des probabilités
+   * spécifiés dans le fichier videogen et en fonction des nombres tirés aléatoirement
+   */
   private VideoSeq addAlternativeVideo(final AlternativeRule video) {
     Object _xblockexpression = null;
     {
@@ -202,6 +207,9 @@ public class ReadVideogenFile {
     return ((VideoSeq)_xblockexpression);
   }
   
+  /**
+   * Création de la vidéo pour l'ajouter à la playlist
+   */
   private playlist.Video createVideoSeqToPlayList(final VideoSeq videoSeq, final PlayListFactory factory) {
     final playlist.Video video = factory.createVideo();
     String _description = videoSeq.getDescription();
@@ -218,32 +226,20 @@ public class ReadVideogenFile {
       int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
       video.setDuration(_durationByFfmpeg);
     }
-    InputOutput.<String>println("//////////////////");
-    String _url_2 = video.getUrl();
-    InputOutput.<String>println(_url_2);
-    InputOutput.<String>println("//////////////////");
     return video;
   }
   
+  /**
+   * Fonction qui va lire dans le fichier la durée de la vidéo.
+   */
   private int getDurationByFfmpeg(final String file) {
     final Runtime rt = Runtime.getRuntime();
     final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/sh", "-c", (("ffprobe -i " + file) + " -show_format | grep duration")));
     try {
       final Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
-      InputStream _errorStream = p.getErrorStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_errorStream);
-      final BufferedReader stdErr = new BufferedReader(_inputStreamReader);
-      int c = stdErr.read();
-      while ((c != (-1))) {
-        {
-          System.err.print(((char) c));
-          int _read = stdErr.read();
-          c = _read;
-        }
-      }
       InputStream _inputStream = p.getInputStream();
-      InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream);
-      final BufferedReader stdInput = new BufferedReader(_inputStreamReader_1);
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      final BufferedReader stdInput = new BufferedReader(_inputStreamReader);
       System.out.println(stdInput);
       final String durationLine = stdInput.readLine();
       String[] _split = durationLine.split("=");
@@ -262,6 +258,9 @@ public class ReadVideogenFile {
     }
   }
   
+  /**
+   * Création de la vidéo pour l'ajouter à la playlist pour une video de type mandatory.
+   */
   private playlist.Video createVideoSeqToPlayList(final VideoSeqMandatory videoSeq, final PlayListFactory factory) {
     playlist.Video _xblockexpression = null;
     {
@@ -280,10 +279,6 @@ public class ReadVideogenFile {
         int _durationByFfmpeg = this.getDurationByFfmpeg(_url_1);
         video.setDuration(_durationByFfmpeg);
       }
-      InputOutput.<String>println("//////////////////");
-      String _url_2 = video.getUrl();
-      InputOutput.<String>println(_url_2);
-      InputOutput.<String>println("//////////////////");
       _xblockexpression = video;
     }
     return _xblockexpression;

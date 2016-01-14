@@ -8,6 +8,7 @@ import java.io.InputStreamReader
 import playlist.PlayList
 import playlist.Video
 
+//Classe qui va générer un fichier de type m3u8
 class PlayListM3UEXT implements GeneratorFile {
 	/**
 	 * #EXTM3U
@@ -69,6 +70,7 @@ Bon Hits\Super artiste
 		]
 	}
 	
+	//Méthode qui crée un fichier .ts à partir de la vidéo
 	def creationTSFile(Video video){
 		val newVideo = video.url.substring(0,video.url.lastIndexOf('.'))+".ts"
 		val rt = Runtime::runtime
@@ -78,16 +80,7 @@ Bon Hits\Super artiste
 			"-c",
 			commande
 		]
-		val p=rt.exec(cmd)
-		val stdErr = new BufferedReader(
-				new InputStreamReader(p.errorStream)
-				)
-				
-				var c=stdErr.read;
-				while(c!=-1){
-					System.err.print(c as char)
-					c=stdErr.read;
-				}
+		rt.exec(cmd)
 		video.url = newVideo
 	}
 	

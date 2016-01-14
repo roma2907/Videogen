@@ -4,9 +4,6 @@ import fr.istic.videogen.vignette.AlternativeVideoWithImage;
 import fr.istic.videogen.vignette.EnumTypeVideo;
 import fr.istic.videogen.vignette.SingleVideoWithImage;
 import fr.istic.videogen.vignette.VideoWithImage;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +24,9 @@ import org.xtext.example.mydsl.videoGen.VideoSeqMandatory;
 public class GeneratorVignette {
   private int j = 0;
   
+  /**
+   * Création de l'image à partir de la vidéo
+   */
   private SingleVideoWithImage createImage(final String url, final EnumTypeVideo type) {
     try {
       SingleVideoWithImage _xblockexpression = null;
@@ -37,18 +37,7 @@ public class GeneratorVignette {
         final Runtime rt = Runtime.getRuntime();
         final String commande = ((("ffmpeg -y -i " + url) + " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 ") + newImage);
         final List<String> cmd = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("/bin/bash", "-c", commande));
-        Process p = rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
-        InputStream _errorStream = p.getErrorStream();
-        InputStreamReader _inputStreamReader = new InputStreamReader(_errorStream);
-        final BufferedReader stdErr = new BufferedReader(_inputStreamReader);
-        int c = stdErr.read();
-        while ((c != (-1))) {
-          {
-            System.err.print(((char) c));
-            int _read = stdErr.read();
-            c = _read;
-          }
-        }
+        rt.exec(((String[])Conversions.unwrapArray(cmd, String.class)));
         int _lastIndexOf_1 = newImage.lastIndexOf("/");
         int _plus = (_lastIndexOf_1 + 1);
         int _length = newImage.length();
@@ -62,6 +51,9 @@ public class GeneratorVignette {
     }
   }
   
+  /**
+   * Génération des vignettes des vidéos du fichier videogen
+   */
   public ArrayList<VideoWithImage> generateVignette(final VideoGen videogen) {
     ArrayList<VideoWithImage> _xblockexpression = null;
     {
@@ -93,6 +85,9 @@ public class GeneratorVignette {
     return _xblockexpression;
   }
   
+  /**
+   * Création des vignettes pour une vidéo alternative
+   */
   private AlternativeVideoWithImage createImageAlternative(final AlternativeRule alternative) {
     AlternativeVideoWithImage _xblockexpression = null;
     {

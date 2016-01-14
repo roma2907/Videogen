@@ -62,6 +62,9 @@ public class Generator {
     return _xblockexpression;
   }
   
+  /**
+   * Création du générateur de fichier en fonction du type spécifié
+   */
   private static GeneratorFile createGenerator(final TypeGenerator type, final PlayList playlist, final String fileOut) {
     if (type != null) {
       switch (type) {

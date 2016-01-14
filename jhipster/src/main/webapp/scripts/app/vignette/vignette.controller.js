@@ -14,9 +14,6 @@ angular.module('generatorVideoApp')
         postVideo = function(data){
 
              Vignette.genVignettes(data, function(res){
-
-                console.log("success");
-                console.log(res);
                 $scope.myUrl = res;
                 play($scope.myUrl.url.replace("src/main/webapp","http://localhost:8080"));
             });
@@ -30,7 +27,6 @@ angular.module('generatorVideoApp')
         };
 
         $scope.selectItem = function(item){
-            console.log(item.ident);
             if($scope.my_items.indexOf(item.ident) !== -1){
                 $scope.my_items.splice($scope.my_items.indexOf(item.ident), 1);
             }
@@ -42,7 +38,6 @@ angular.module('generatorVideoApp')
         };
 
         $scope.selectItemAltern = function(array,item){
-            console.log(array);
             array.forEach(function(data)
             {
 
@@ -53,16 +48,9 @@ angular.module('generatorVideoApp')
             });
             $scope.my_items.push(item.ident);
             $scope.selectedItem = item.ident;
-
-
-
         };
 
         $scope.isSelected = function(item){
-            console.log("isSelected");
-            console.log(item.ident);
-            console.log($scope.my_items);
-
             if($scope.my_items.indexOf(item.ident) !== -1){
                 return true;
             }

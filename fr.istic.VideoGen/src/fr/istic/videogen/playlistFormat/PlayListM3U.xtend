@@ -5,6 +5,7 @@ import java.io.File
 import java.io.FileWriter
 import playlist.PlayList
 
+//Classe qui va générer un fichier de type m3u
 class PlayListM3U implements GeneratorFile {
 
 	val PlayList playList;

@@ -49,7 +49,9 @@ class Generator {
 		generator.generateVignette(videogen)
 	}
 	
-	
+	/**
+	 * Création du générateur de fichier en fonction du type spécifié 
+	 */
 	private static def GeneratorFile createGenerator(TypeGenerator type,PlayList playlist,String fileOut){
 		switch(type){
 			case TypeGenerator.M3U:return new PlayListM3U(playlist,fileOut)
