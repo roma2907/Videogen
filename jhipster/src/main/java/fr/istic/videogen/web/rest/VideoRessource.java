@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.istic.videogen.Generator;
 import fr.istic.videogen.playlistFormat.TypeGenerator;
 import fr.istic.videogen.vignette.VideoWithImage;
+
 
 
 
