@@ -44,10 +44,13 @@
 
 </li>
     </ul>
-<pre>Vos choix : {{my_items | json}}</pre>
+<!--pre>Vos choix : {{my_items | json}}</pre-->
 
 
     <button ng-click="generateSelectedVideo()">Générer une video</button>
+    <div ng-if="myUrl.url">
+        <a href="http://localhost:8080/resources/file.m3u8">Download</a>
+    </div>
     <div id="content" class="flowplayer">
         <a id="PLAYERID"></a>
     </div>
