@@ -3,11 +3,14 @@
 #EXTINF: 16 intro LOTR
 /resources/intro1.ts
 #EXT-X-DISCONTINUITY
+#EXTINF: 12 description1
+/resources/optalt1.ts
+#EXT-X-DISCONTINUITY
 #EXTINF: 24 description1
 /resources/optalt2.ts
 #EXT-X-DISCONTINUITY
-#EXTINF: 16 null
-/resources/optalt5.ts
+#EXTINF: 22 null
+/resources/optalt3.ts
 #EXT-X-DISCONTINUITY
 #EXTINF: 14 description1
 /resources/end1.ts
