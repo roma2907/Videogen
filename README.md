@@ -13,3 +13,10 @@ L’objectif de ce projet est de déployer un générateur ou configurateur Web 
 ##Execution
 1. cd jhipster/
 2. mvn
+
+##Utilisation
+Après vous l'authentification (admin/admin). Deux choix s'offre à vous:
+- Vidéo: Une génération aléatoire à partir de vidéo sélectionné qui tiens compte des probabilités.
+- Vignettes: Une génération défini par vos choix optionnel et alternatif (avec une intro et conclusion obligatoire).
+
+
