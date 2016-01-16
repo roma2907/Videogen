@@ -1,53 +1,5 @@
 
-
-<div>
-<<<<<<< HEAD
-	<style type="text/css">
-.selected-item {
-	border: 2px solid green;
-}
-
-.img-responsive.selected-image {
-	border: 2px solid green;
-}
-</style>
-
-	<p>Choix : Alternatif et Optionnel</p>
-	<ul>
-		<li style="list-style-type: none;" ng-repeat="vignette in vignettes">
-			<div ng-if="vignette.name && vignette.type=='OPTIONNAL'">
-				<img src="http://localhost:8080/resources/{{vignette.name}}"
-					class="img-responsive" ng-click="selectItem(vignette);"
-					ng-class="{'selected-item':isSelected(vignette)}"
-					style="width: 150px; height: 120px; margin: auto;" alt="" title="">
-			</div>
-			<div ng-if="vignette.name && vignette.type=='MANDATORY'">
-				<img src="http://localhost:8080/resources/{{vignette.name}}"
-					class="img-responsive" ng-class="{'selected-image':true}"
-					style="width: 150px; height: 120px; margin: auto;" alt="" title="">
-			</div>
-			<div ng-if="vignette.videos" style="text-align: center;">
-				<div style="display: inline-block"
-					ng-repeat="altern in vignette.videos">
-					<img src="http://localhost:8080/resources/{{altern.name}}"
-						class="img-responsive"
-						ng-click="selectItemAltern(vignette.videos,altern)"
-						ng-class="{'selected-image':isSelected(altern)}"
-						style="width: 150px; height: 120px; margin: auto;" alt="" title="">
-				</div>
-			</div>
-
-		</li>
-	</ul>
-	<pre>Vos choix : {{my_items | json}}</pre>
-
-
-	<button ng-click="generateSelectedVideo()">Générer une video</button>
-	<div id="content" class="flowplayer">
-		<a id="PLAYERID"></a>
-	</div>
-=======
-    <style type="text/css">
+   <style type="text/css">
 
         .selected-item{
             border: 2px solid green;
@@ -100,8 +52,6 @@
     <div id="content" class="flowplayer">
         <a id="PLAYERID"></a>
     </div>
->>>>>>> 0b43305b9d977e4acc6c79407a74660dc4fc30ce
-
 </div>
 
 
