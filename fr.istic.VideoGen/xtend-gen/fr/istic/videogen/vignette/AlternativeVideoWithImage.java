@@ -7,7 +7,7 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 /**
- * Classe qui associe la liste et le type de vidéo
+ * Classe qui associe la liste des identifiants et l'image et le type de vidéo
  */
 @SuppressWarnings("all")
 public class AlternativeVideoWithImage implements VideoWithImage {

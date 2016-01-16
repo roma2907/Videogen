@@ -63,7 +63,7 @@ public class Generator {
   }
   
   /**
-   * Création du générateur de fichier en fonction du type spécifié
+   * Création du générateur de fichier en fonction du type spécifié (ffmpeg,m3u,m3u8)
    */
   private static GeneratorFile createGenerator(final TypeGenerator type, final PlayList playlist, final String fileOut) {
     if (type != null) {

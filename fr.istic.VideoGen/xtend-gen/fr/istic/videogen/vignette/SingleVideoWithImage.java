@@ -3,6 +3,9 @@ package fr.istic.videogen.vignette;
 import fr.istic.videogen.vignette.EnumTypeVideo;
 import fr.istic.videogen.vignette.VideoWithImage;
 
+/**
+ * Classe qui associe l'url de l'image, l'identifiant de la vidéo, et le type de vidéo
+ */
 @SuppressWarnings("all")
 public class SingleVideoWithImage implements VideoWithImage {
   public String name;

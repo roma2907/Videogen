@@ -50,7 +50,7 @@ class Generator {
 	}
 	
 	/**
-	 * Création du générateur de fichier en fonction du type spécifié 
+	 * Création du générateur de fichier en fonction du type spécifié (ffmpeg,m3u,m3u8) 
 	 */
 	private static def GeneratorFile createGenerator(TypeGenerator type,PlayList playlist,String fileOut){
 		switch(type){

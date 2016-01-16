@@ -5,7 +5,7 @@ import org.xtext.example.mydsl.videoGen.Video
 import java.util.ArrayList
 
 /**
- * Classe qui associe la liste et le type de vidéo
+ * Classe qui associe la liste des identifiants et l'image et le type de vidéo
  */
 class AlternativeVideoWithImage implements VideoWithImage{
 	

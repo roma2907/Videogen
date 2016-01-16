@@ -5,6 +5,7 @@ import java.io.FileWriter
 import java.io.IOException
 import playlist.PlayList
 
+// Classe qui va générer un fichier de type ffmpeg
 class PlayListFFMPEG implements GeneratorFile {
 
 	val PlayList playList;
