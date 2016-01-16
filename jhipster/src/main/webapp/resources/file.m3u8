@@ -8,6 +8,11 @@
 #EXT-X-DISCONTINUITY
 #EXTINF: 15 null
 /resources/optalt4.ts
+#EXTINF: 24 description1
+/resources/optalt2.ts
+#EXT-X-DISCONTINUITY
+#EXTINF: 22 null
+/resources/optalt3.ts
 #EXT-X-DISCONTINUITY
 #EXTINF: 14 description1
 /resources/end1.ts
